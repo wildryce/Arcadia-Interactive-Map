@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="Haiku The Robot Interactive Map" content="">
+    <title>Arcadia Interactive Map</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <link rel="stylesheet" href="coordinates/Control.Coordinates.css" />
+
+    <!-- JS Libraries -->
+    <script src="leaflet/leaflet.js"></script>
+    <script src="coordinates/Control.Coordinates.js"></script>
+
+
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+            background-color: #0D2B45;
+        }
+    </style>
+</head>
+
+    <body>
+        <!-- HTML Comment -->
+        <div id="map"></div>
+    </body>
+
+    <script src="js/map.js"></script>
+ <!--<script>
+     var bounds = [[-940, -1526], [734, 1499]];
+
+     var map = L.map('map', { crs: L.CRS.Simple, center: [940, 1526], minZoom:-1, maxZoom: 3, maxBounds: bounds});
+
+     var c = new L.Control.Coordinates();
+
+     c.addTo(map);
+
+     
+     var image = L.imageOverlay('images/ArcadiaMap.jpg', bounds).addTo(map);
+     
+     map.fitBounds(bounds);
+
+     map.on("mousemove", function (e) {
+         c.setCoordinates(e);
+     });
+ </script>-->
+
+</html>
