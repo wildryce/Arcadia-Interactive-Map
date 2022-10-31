@@ -1,12 +1,14 @@
 var bounds = [[-465, -645], [335, 635]];
 
-var map = L.map('map', { crs: L.CRS.Simple, minZoom: 0.28, maxZoom: 3, maxBounds: bounds });
+var map = L.map('map', { crs: L.CRS.Simple, minZoom: 0.28, maxZoom: 3.5, maxBounds: bounds });
 
 var c = new L.Control.Coordinates();
 
 c.addTo(map);
 
-var image = L.imageOverlay('images/EmptyArcadiaMap.png', bounds).addTo(map);
+//var image = L.imageOverlay('images/EmptyArcadiaMap.png', bounds).addTo(map);
+
+L.tileLayer('images/map/{z}/{x}/{y}.png', {minZoom: 0.28, maxZoom: 3.5, attribution: 'My Tiles'}).addTo(map);
 
 map.fitBounds(bounds);
 
