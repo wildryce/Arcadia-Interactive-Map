@@ -18,3 +18,4 @@ map.setView([imageSize / 1.75, imageSize / 2], 0)
 map.on("mousemove", function (e) {
     c.setCoordinates(e);
 });
+

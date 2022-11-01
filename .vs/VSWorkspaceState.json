@@ -2,12 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\coordinates",
+    "\\css",
     "\\images",
     "\\images\\markers",
     "\\images\\markers\\collectibles",
     "\\js",
     "\\legend"
   ],
-  "SelectedNode": "\\legend",
+  "SelectedNode": "\\css\\textbox.css",
   "PreviewInSolutionExplorer": false
 }
