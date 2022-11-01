@@ -1,10 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\coordinates",
     "\\images",
     "\\images\\markers",
     "\\images\\markers\\collectibles",
-    "\\js"
+    "\\js",
+    "\\legend"
   ],
+  "SelectedNode": "\\legend",
   "PreviewInSolutionExplorer": false
 }

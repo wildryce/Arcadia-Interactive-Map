@@ -16,7 +16,7 @@ L.Control.Coordinates = L.Control.extend({
 		latitudeText: 'lat.',
 		longitudeText: 'lon.',
 		promptText: 'Press Ctrl+C to copy coordinates',
-		precision: 4
+		precision: 0
 	},
 
 	initialize: function(options)
@@ -47,10 +47,9 @@ L.Control.Coordinates = L.Control.extend({
 				lngTextIndex = lng.textContent.indexOf(this.options.longitudeText) + lngTextLen,
 				latCoordinate = lat.textContent.substr(latTextIndex),
 				lngCoordinate = lng.textContent.substr(lngTextIndex);
-
+			
 			window.prompt(this.options.promptText, latCoordinate + ' ' + lngCoordinate);
     	}, this);
-
 		return container;
 	},
 
@@ -73,6 +72,10 @@ L.Control.Coordinates = L.Control.extend({
 		}
 
 		if (obj.latlng) {
+			//Modify the LatLng to set the center coordinates [0, 0] to be the Mainframe Vault
+			obj.latlng.lat -= 9425;
+			obj.latlng.lng -= 7750;
+
 			L.DomUtil.get(this._lat).innerHTML = '<strong>' + this.options.latitudeText + ':</strong> ' + obj.latlng.lat.toFixed(this.options.precision).toString();
 			L.DomUtil.get(this._lng).innerHTML = '<strong>' + this.options.longitudeText + ':</strong> ' + obj.latlng.lng.toFixed(this.options.precision).toString();
 		}

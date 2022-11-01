@@ -9,10 +9,12 @@
     <!-- CSS -->
     <link rel="stylesheet" href="leaflet/leaflet.css" />
     <link rel="stylesheet" href="coordinates/Control.Coordinates.css" />
+    <link rel="stylesheet" href="legend/leaflet.legend.css" />
 
     <!-- JS Libraries -->
     <script src="leaflet/leaflet.js"></script>
     <script src="coordinates/Control.Coordinates.js"></script>
+    <script src="legend/leaflet.legend.js"></script>
 
 
 
@@ -30,29 +32,14 @@
     </style>
 </head>
 
-    <body>
-        <!-- HTML Comment -->
-        <div id="map"></div>
-    </body>
+<body>
+    <!-- HTML Comment -->
+    <div id="map"></div>
 
-    <script src="js/map.js"></script>
- <!--<script>
-     var bounds = [[-940, -1526], [734, 1499]];
+</body>
 
-     var map = L.map('map', { crs: L.CRS.Simple, center: [940, 1526], minZoom:-1, maxZoom: 3, maxBounds: bounds});
-
-     var c = new L.Control.Coordinates();
-
-     c.addTo(map);
-
-     
-     var image = L.imageOverlay('images/ArcadiaMap.jpg', bounds).addTo(map);
-     
-     map.fitBounds(bounds);
-
-     map.on("mousemove", function (e) {
-         c.setCoordinates(e);
-     });
- </script>-->
+<script src="js/init.js"></script>
+<script src="js/markers.js"></script>
+<script src="js/map.js"></script>
 
 </html>
