@@ -7,6 +7,30 @@
     border-radius: 5px;
 }
 
-    .text-box:empty {
-        display: none;
-    }
+.text-box:empty {
+    display: none;
+}
+
+#collectedButton {
+    position:absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    z-index: 400;
+    opacity: 0.75;
+}
+
+#legendButton {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 10px;
+    z-index: 400;
+    opacity: 0.75;
+}
+
+.my-label {
+    position: absolute;
+    width: 1000px;
+    font-size: 20px;
+}

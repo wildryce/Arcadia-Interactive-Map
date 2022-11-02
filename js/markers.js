@@ -1,7 +1,15 @@
 /// Marker Template:
-///     L.marker(LatLng(0, 0), { icon: var, riseOnHover: true, title: "" }).addTo(map).on('click', onClick);
+///     L.marker(LatLng(0, 0), { icon: var, riseOnHover: true, title: "" }).addTo(map).on('click', setOpacity);
 
-
+var gray = 'images/backgrounds/gray.png';
+var red = 'images/backgrounds/red.png';
+var yellow = 'images/backgrounds/yellow.png';
+var purple = 'images/backgrounds/purple.png';
+var blue = 'images/backgrounds/blue.png';
+var green = 'images/backgrounds/green.png';
+var brown = 'images/backgrounds/brown.png';
+var pink = 'images/backgrounds/pink.png';
+var teal = 'images/backgrounds/teal.png';
 
 /** Converts given LatLng values to properly be displayed on map .
  *   - Given coordinates on map are cosmetic, as the coordinates are shifted to have the origin [0, 0] on the Mainframe Vault.
@@ -31,12 +39,13 @@ function setOpacity(e) {
 }
 
 
+
 /*--- DISRUPTOR ICONS ------------------------------------------------*/
 var disruptorIcon = L.icon({
     iconUrl: 'images/markers/world/Disruptor_Icon.png',
     iconSize: [22, 22],
     iconAnchor: [11, 11],
-    shadowUrl: 'images/backgrounds/disruptor_bg.png',
+    shadowUrl: red,
     shadowSize: [32, 32],
     shadowAnchor: [16, 16],
     popupAnchor: [0, -11]
@@ -69,12 +78,13 @@ var ib = L.marker(LatLng(-1350, -2150), { icon: disruptorIcon, riseOnHover: true
 var disruptors = L.layerGroup([aw, aw2, lb, lb2, sw, fr, wd, pe, ff, ff2, bf, cc, cc2, ib]).addTo(map);
 
 
+
 /*--- SKILLS ICONS ---------------------------------------------------*/
 var skillIcon = L.Icon.extend({
     options: {
         iconSize: [28, 28],
         iconAnchor: [14, 14],
-        shadowUrl: 'images/backgrounds/skills_bg.png',
+        shadowUrl: purple,
         shadowSize: [32, 32],
         shadowAnchor: [16, 16],
         popupAnchor: [0, -11]
@@ -91,6 +101,8 @@ var stringAndHookIcon = new skillIcon({ iconUrl: 'images/markers/skills/StringAn
 var heatTreatmentIcon = new skillIcon({ iconUrl: 'images/markers/skills/HeatTreatment_Icon.png' });
 var sealantTreatmentIcon = new skillIcon({ iconUrl: 'images/markers/skills/SealantTreatment_Icon.png' });
 var bulbletIcon = new skillIcon({ iconUrl: 'images/markers/skills/Bulblet_Icon.png' });
+var goldcrestWhistleIcon = new skillIcon({ iconUrl: 'images/markers/upgrades/GoldcrestWhistle_Icon.png' });
+var whistle = L.marker(LatLng(-1080, -2730), { icon: goldcrestWhistleIcon, riseOnHover: true, title: "Goldcrest Whistle" }).addTo(map).on('click', setOpacity);
 
 
 var wrench = L.marker(LatLng(-850, -4005), { icon: wrenchIcon, riseOnHover: true, title: "Adjustable Wrench" }).addTo(map).on('click', setOpacity);
@@ -104,13 +116,16 @@ var water = L.marker(LatLng(-465, 620), { icon: heatTreatmentIcon, riseOnHover: 
 var fire = L.marker(LatLng(-465, 765), { icon: sealantTreatmentIcon, riseOnHover: true, title: "Sealant Treatment" }).addTo(map).on('click', setOpacity);
 var light = L.marker(LatLng(-285, 170), { icon: bulbletIcon, riseOnHover: true, title: "Bulblet" }).addTo(map).on('click', setOpacity);
 
-var skills = L.layerGroup([wrench, ball, cling, djump, bomb, warp, grapple, water, fire, light]).addTo(map);
+var skills = L.layerGroup([wrench, ball, cling, djump, bomb, warp, grapple, water, fire, light, whistle]).addTo(map);
+
+
+
 /*--- POWER CELL ICONS -----------------------------------------------*/
 var powerCellIcon = L.icon({
     iconUrl: 'images/markers/collectibles/PowerCell_Icon.png',
     iconSize: [24, 24],
     iconAnchor: [12, 12],
-    shadowUrl: 'images/backgrounds/collectible_bg.png',
+    shadowUrl: gray,
     shadowSize: [32, 32],
     shadowAnchor: [17, 16],
     popupAnchor: [0, -11]
@@ -153,12 +168,13 @@ var p24 = L.marker(LatLng(-1305, 5065), { icon: powerCellIcon, riseOnHover: true
 var powerCells = L.layerGroup([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24]).addTo(map);
 
 
+
 /*--- CHIP ICONS -----------------------------------------------------*/
 var chipIcon = L.Icon.extend({
     options: {
         iconSize: [28, 28],
         iconAnchor: [14, 14],
-        shadowUrl: 'images/backgrounds/upgrades_bg.png',
+        shadowUrl: pink,
         shadowSize: [32, 32],
         shadowAnchor: [16, 16],
         popupAnchor: [0, -11]
@@ -193,7 +209,7 @@ var socketIcon = L.Icon.extend({
     options: {
         iconSize: [26, 26],
         iconAnchor: [13, 13],
-        shadowUrl: 'images/backgrounds/upgrades_bg.png',
+        shadowUrl: yellow,
         shadowSize: [32, 32],
         shadowAnchor: [16, 16],
         popupAnchor: [0, -11]
@@ -208,14 +224,11 @@ var bsocket = L.marker(LatLng(-1830, 6428), { icon: blueSocketIcon, riseOnHover:
 var rsocket = L.marker(LatLng(2630, 5965), { icon: redSocketIcon, riseOnHover: true, title: "Red Chip Socket" }).addTo(map).on('click', setOpacity); //Red Socket
 var gsocket = L.marker(LatLng(-3945, -1035), { icon: greenSocketIcon, riseOnHover: true, title: "Green Chip Socket" }).addTo(map).on('click', setOpacity); //Green Socket
 
-var blue = [nomad, sawblade, transputer, qrepair, invincibility, bsocket];
-var red = [crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket];
-var green = [speed, noheat, autorepair, extract, autoroll, gsocket];
+var blueChips = [nomad, sawblade, transputer, qrepair, invincibility, bsocket];
+var redChips = [crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket];
+var greenChips = [speed, noheat, autorepair, extract, autoroll, gsocket];
 var chipsSockets = L.layerGroup([nomad, sawblade, transputer, qrepair, invincibility, bsocket, crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket, speed, noheat, autorepair, extract, autoroll, gsocket]).addTo(map);
 
-
-
-/*--- SCRAP PART LOCATION ICONS --------------------------------------*/
 
 
 /*--- CAPSULE FRAGMENT ICONS -----------------------------------------*/
@@ -223,7 +236,7 @@ var capsuleIcon = L.icon({
     iconUrl: 'images/markers/upgrades/CapsuleFragment_Icon.png',
     iconSize: [28, 28],
     iconAnchor: [14, 14],
-    shadowUrl: 'images/backgrounds/upgrades_bg.png',
+    shadowUrl: blue,
     shadowSize: [32, 32],
     shadowAnchor: [16, 16],
     popupAnchor: [0, -11]
@@ -243,12 +256,13 @@ var cap10 = L.marker(LatLng(-165, 1085), { icon: capsuleIcon, riseOnHover: true,
 var capsules = L.layerGroup([cap1, cap2, cap3, cap4, cap5, cap6, cap7, cap8, cap9, cap10]).addTo(map);
 
 
+
 /*--- LIQUID COOLANT ICONS -------------------------------------------*/
 var coolantIcon = L.icon({
     iconUrl: 'images/markers/upgrades/LiquidCoolant_Icon.png',
     iconSize: [26, 26],
     iconAnchor: [13, 13],
-    shadowUrl: 'images/backgrounds/upgrades_bg.png',
+    shadowUrl: yellow,
     shadowSize: [32, 32],
     shadowAnchor: [16, 16],
     popupAnchor: [0, -11]
@@ -260,10 +274,47 @@ var coolant3 = L.marker(LatLng(2560, 2915), { icon: coolantIcon, riseOnHover: tr
 
 var coolants = L.layerGroup([coolant1, coolant2, coolant3]).addTo(map);
 
+
+
 /*--- RUSTED KEY ICONS -----------------------------------------------*/
+var rustedKeyIcon = L.icon({
+    iconUrl: 'images/markers/collectibles/RustyKey_Icon.png',
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
+    shadowUrl: teal,
+    shadowSize: [32, 32],
+    shadowAnchor: [16, 16],
+    popupAnchor: [0, -11]
+});
+
+var key1 = L.marker(LatLng(-505, -4175), { icon: rustedKeyIcon, riseOnHover: true, title: "Rusted Key" }).addTo(map).on('click', setOpacity); //Abandoned Wastes Key
+var key2 = L.marker(LatLng(-2695, -6580), { icon: rustedKeyIcon, riseOnHover: true, title: "Rusted Key" }).addTo(map).on('click', setOpacity); //Sunken Wastes Key
+var key3 = L.marker(LatLng(910, 785), { icon: rustedKeyIcon, riseOnHover: true, title: "Rusted Key (Slate Reward)" }).addTo(map).on('click', setOpacity); //Catacombs (Given after ???)
+
+var keys = L.layerGroup([key1, key2, key3]).addTo(map);
 
 
-/*--- MISC ITEMS ICONS (ELECTRIC KEY, CASSETTE, GOLDCREST WHISTLE) ---*/
+
+/*--- MISC ITEMS ICONS (ELECTRIC KEY, CASSETTE) ---*/
+var collectibleIcon = L.Icon.extend({
+    options: {
+        iconSize: [28, 28],
+        iconAnchor: [13, 13],
+        shadowUrl: green,
+        shadowSize: [32, 32],
+        shadowAnchor: [16, 16],
+        popupAnchor: [0, -11]
+    }
+});
+
+var cassetteIcon = new collectibleIcon({ iconUrl: 'images/markers/collectibles/Cassette_Icon.png' });
+var cassette = L.marker(LatLng(820, -1170), { icon: cassetteIcon, riseOnHover: true, title: "Melody's Cassette (Puzzle Reward)" }).addTo(map).on('click', setOpacity); //Given by Pinion
+
+var electricKeyIcon = new collectibleIcon({ iconUrl: 'images/markers/collectibles/ElectricKey_Icon.png' });
+var electricKey = L.marker(LatLng(-2490, -75), { icon: electricKeyIcon, riseOnHover: true, title: "Electric Key" }).addTo(map).on('click', setOpacity); //Given by Pinion
+
+var misc = L.layerGroup([cassette, electricKey]).addTo(map);
+
 
 
 /*--- BOSS ICONS -----------------------------------------------------*/
@@ -271,9 +322,6 @@ var bossIcon = L.Icon.extend({
     options: {
         iconSize: [28, 28],
         iconAnchor: [14, 14],
-        shadowUrl: 'images/backgrounds/upgrades_bg.png',
-        shadowSize: [32, 32],
-        shadowAnchor: [16, 16],
         popupAnchor: [0, -11]
     }
 });
@@ -287,6 +335,18 @@ var electron = L.marker(LatLng(-2645, -320), { icon: electronIcon, riseOnHover: 
 var neutron = L.marker(LatLng(970, -4065), { icon: NeutronIcon, riseOnHover: true, title: "Neutron (Boss)" }).addTo(map).on('click', setOpacity); //Neutron
 
 var bosses = L.layerGroup([proton, electron, neutron]).addTo(map);
+
+
+
+/*--- SHOP ITEMS (SHOWN UP TOP) --------------------------------------*/
+var echoText = L.tooltip(LatLng(3575, -4660), { content: 'Echo Shop Items', permanent: true, direction: 'center' }).addTo(map);
+
+var sonnetText = L.tooltip(LatLng(3575, -475), { content: 'Sonnet Shop Items', permanent: true, direction: 'center' }).addTo(map);
+
+
+
+/*--- SCRAP PART LOCATION ICONS --------------------------------------*/
+
 
 
 /*--- NPC ICONS (MAY BE IMPLEMENTED) ---------------------------------*/

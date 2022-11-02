@@ -2,25 +2,10 @@
  * TO DO:
  * - Add a list on the right to enable/disable certain marker groups chromfrom the map
  */
-var TextBox = L.Control.extend({
-    options: {
-        // Default control position
-        position: 'topleft'
-    },
-    onAdd: function (map) {
-        // Create a container with classname and return it
-        return L.DomUtil.create('div', 'text-box');
-    },
-    setContent: function (content) {
-        // Set the innerHTML of the container
-        this.getContainer().innerHTML = content;
-    }
-});
-
-
 
 L.control.Legend({
     position: "topleft",
+    title: "Map Icons",
     legends: [
         {
             label: "Disruptors",
@@ -63,16 +48,22 @@ L.control.Legend({
             type: "image",
             url: './images/markers/world/ElectronBoss_Icon.png',
             layers: bosses
+        },
+        {
+            label: "Rusted Keys",
+            type: "image",
+            url: './images/markers/collectibles/RustyKey_Icon.png',
+            layers: keys
+        },
+        {
+            label: "Misc Collectibles",
+            type: "image",
+            url: './images/markers/collectibles/Cassette_Icon.png',
+            layers: misc
         }
     ],
     opacity: 0.8
 }).addTo(map);
-
-// Assign to a variable so you can use it later and add it to your map
-var textbox = new TextBox().addTo(map);
-var textbox2 = new TextBox().addTo(map);
-textbox.setContent("Legend items can be clicked to show/hide specific groups.")
-textbox2.setContent("Map Icons can be clicked to mark as collected/uncollected.")
 
 function setState(e) {
     var group = e.target;
@@ -82,4 +73,19 @@ function setState(e) {
     else {
         map.addLayer(group);
     }
+}
+
+function onClickCollected() {
+    var div = document.getElementById('collectedButton');
+    if (document.getElementById('legendButton')) {
+        var div2 = document.getElementById('legendButton');
+        div2.style.setProperty('top', '20px');
+    }
+
+    div.parentNode.removeChild(div);
+}
+
+function onClickLegend() {
+    var div = document.getElementById('legendButton');
+    div.parentNode.removeChild(div);
 }
