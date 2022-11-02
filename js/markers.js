@@ -189,10 +189,10 @@ var nomad = L.marker(LatLng(690, -3365), { icon: blueChipIcon, riseOnHover: true
 var sawblade = L.marker(LatLng(-2210, 3165), { icon: blueChipIcon, riseOnHover: true, title: "Sawblade" }).addTo(map).on('click', setOpacity); //Sawblade
 var transputer = L.marker(LatLng(-2515, -5715), { icon: blueChipIcon, riseOnHover: true, title: "Amplifying Transputer" }).addTo(map).on('click', setOpacity); //Amplifying Transputer
 var qrepair = L.marker(LatLng(-155, 3890), { icon: blueChipIcon, riseOnHover: true, title: "Quick Repair (Quest Reward)" }).addTo(map).on('click', setOpacity); //Quick Repair
-var invincibility = L.marker(LatLng(-1680, 2840), { icon: blueChipIcon, riseOnHover: true, title: "Tungsten Steel" }).addTo(map).on('click', setOpacity); //Tungsten Steel
+var fastcool = L.marker(LatLng(-1680, 2840), { icon: blueChipIcon, riseOnHover: true, title: "Coolant Soluble" }).addTo(map).on('click', setOpacity); //Coolant Soluble
 
 var crit = L.marker(LatLng(-205, -2475), { icon: redChipIcon, riseOnHover: true, title: "Infinity Edge" }).addTo(map).on('click', setOpacity); // Infinity Edge
-var spark = L.marker(LatLng(-1280, -405), { icon: redChipIcon, riseOnHover: true, title: "Electro-Emitter (Reward [#])" }).addTo(map).on('click', setOpacity); // Electro-Emitter
+var spark = L.marker(LatLng(-1280, -405), { icon: redChipIcon, riseOnHover: true, title: "Electro-Emitter (Quatern Reward [12 Power Cells])" }).addTo(map).on('click', setOpacity); // Electro-Emitter
 var lightning = L.marker(LatLng(-2243, -3810), { icon: redChipIcon, riseOnHover: true, title: "Bulb Relation" }).addTo(map).on('click', setOpacity); // Bulb Relation
 var steady = L.marker(LatLng(-3560, 1075), { icon: redChipIcon, riseOnHover: true, title: "Magnetic Footing" }).addTo(map).on('click', setOpacity); // Magnetic Footing
 var bombcost = L.marker(LatLng(910, 140), { icon: redChipIcon, riseOnHover: true, title: "Power Processor (Behind Wall: Requires both skulls)" }).addTo(map).on('click', setOpacity); // Power Processor
@@ -224,10 +224,10 @@ var bsocket = L.marker(LatLng(-1830, 6428), { icon: blueSocketIcon, riseOnHover:
 var rsocket = L.marker(LatLng(2630, 5965), { icon: redSocketIcon, riseOnHover: true, title: "Red Chip Socket" }).addTo(map).on('click', setOpacity); //Red Socket
 var gsocket = L.marker(LatLng(-3945, -1035), { icon: greenSocketIcon, riseOnHover: true, title: "Green Chip Socket" }).addTo(map).on('click', setOpacity); //Green Socket
 
-var blueChips = [nomad, sawblade, transputer, qrepair, invincibility, bsocket];
+var blueChips = [nomad, sawblade, transputer, qrepair, fastcool, bsocket];
 var redChips = [crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket];
 var greenChips = [speed, noheat, autorepair, extract, autoroll, gsocket];
-var chipsSockets = L.layerGroup([nomad, sawblade, transputer, qrepair, invincibility, bsocket, crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket, speed, noheat, autorepair, extract, autoroll, gsocket]).addTo(map);
+var chipsSockets = L.layerGroup([nomad, sawblade, transputer, qrepair, fastcool, bsocket, crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket, speed, noheat, autorepair, extract, autoroll, gsocket]).addTo(map);
 
 
 
@@ -242,8 +242,8 @@ var capsuleIcon = L.icon({
     popupAnchor: [0, -11]
 });
 
-var cap1 = L.marker(LatLng(-1235, -475), { icon: capsuleIcon, riseOnHover: true, title: "Capsule Fragment (Reward [#])" }).addTo(map).on('click', setOpacity); //Quatern Reward 1
-var cap2 = L.marker(LatLng(-1235, -345), { icon: capsuleIcon, riseOnHover: true, title: "Capsule Fragment (Reward [#])" }).addTo(map).on('click', setOpacity); //Quatern Reward 2
+var cap1 = L.marker(LatLng(-1235, -475), { icon: capsuleIcon, riseOnHover: true, title: "Capsule Fragment (Quatern Reward [6 Power Cells])" }).addTo(map).on('click', setOpacity); //Quatern Reward 1
+var cap2 = L.marker(LatLng(-1235, -345), { icon: capsuleIcon, riseOnHover: true, title: "Capsule Fragment (Quatern Reward [18 Power Cells])" }).addTo(map).on('click', setOpacity); //Quatern Reward 2
 var cap3 = L.marker(LatLng(-715, -3570), { icon: capsuleIcon, riseOnHover: true, title: "Capsule Fragment (Boss Reward)" }).addTo(map).on('click', setOpacity); //Tyre Boss Reward
 var cap4 = L.marker(LatLng(-1115, 4005), { icon: capsuleIcon, riseOnHover: true, title: "Capsule Fragment" }).addTo(map).on('click', setOpacity); //Pinion's Expanse: Beside Clock
 var cap5 = L.marker(LatLng(-1805, -6130), { icon: capsuleIcon, riseOnHover: true, title: "Capsule Fragment (Boss Reward)" }).addTo(map).on('click', setOpacity); //Drill Worm Reward
@@ -321,8 +321,7 @@ var misc = L.layerGroup([cassette, electricKey]).addTo(map);
 var bossIcon = L.Icon.extend({
     options: {
         iconSize: [28, 28],
-        iconAnchor: [14, 14],
-        popupAnchor: [0, -11]
+        iconAnchor: [14, 14]
     }
 });
 
@@ -339,9 +338,61 @@ var bosses = L.layerGroup([proton, electron, neutron]).addTo(map);
 
 
 /*--- SHOP ITEMS (SHOWN UP TOP) --------------------------------------*/
-var echoText = L.tooltip(LatLng(3575, -4660), { content: 'Echo Shop Items', permanent: true, direction: 'center' }).addTo(map);
+var shopIcon = L.Icon.extend({
+    options: {
+        iconSize: [28, 28],
+        iconAnchor: [0, 14],
+        shadowSize: [32, 32],
+        shadowAnchor: [2, 16]
+    }
+});
 
-var sonnetText = L.tooltip(LatLng(3575, -475), { content: 'Sonnet Shop Items', permanent: true, direction: 'center' }).addTo(map);
+
+var shopgreenChipIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/GreenChip_Icon.png', shadowUrl: pink });
+var shopBlueChipIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/BlueChip_Icon.png', shadowUrl: pink });
+var shopRedChipIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/RedChip_Icon.png', shadowUrl: pink });
+var shopBlueSocket = new shopIcon({ iconUrl: 'images/markers/upgrades/BlueSocket_Icon.png', shadowUrl: pink });
+var shopRedSocket = new shopIcon({ iconUrl: 'images/markers/upgrades/RedSocket_Icon.png', shadowUrl: pink });
+var shopKeyIcon = new shopIcon({ iconUrl: 'images/markers/collectibles/RustyKey_Icon.png', shadowUrl: teal });
+//var shopSkullGreenIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/RedChip_Icon.png' });
+var shopCasuleIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/CapsuleFragment_Icon.png', shadowUrl: blue });
+
+var echoText = L.tooltip(LatLng(3100, -4700), { content: 'Echo Shop Items', permanent: true, direction: 'center' }).addTo(map);
+var detonate = L.marker(LatLng(3700, -4200), { icon: shopBlueChipIcon, riseOnHover: true, title: "Self Detonation [400 SP]" }).addTo(map).on('click', setOpacity); //Self Detonation
+var projectile = L.marker(LatLng(3400, -4200), { icon: shopRedChipIcon, riseOnHover: true, title: "Shock Projectile [400 SP]" }).addTo(map).on('click', setOpacity); //Shock Projectile
+var shock = L.marker(LatLng(3100, -4200), { icon: shopRedChipIcon, riseOnHover: true, title: "Shock Wave [400 SP]" }).addTo(map).on('click', setOpacity); //Shock Wave
+chipsSockets.addLayer(detonate);
+chipsSockets.addLayer(projectile);
+chipsSockets.addLayer(shock);
+
+
+var sonnetText = L.tooltip(LatLng(3100, -2000), { content: 'Sonnet Shop Items', permanent: true, direction: 'center' }).addTo(map);
+var shopKey = L.marker(LatLng(3700, -1450), { icon: shopKeyIcon, riseOnHover: true, title: "Rusted Key [ 300 SP]" }).addTo(map).on('click', setOpacity); //Sonnet Key
+var shopCapsule1 = L.marker(LatLng(3400, -1450), { icon: shopCasuleIcon, riseOnHover: true, title: "Capsule Fragment [450 SP]" }).addTo(map).on('click', setOpacity); //Sonnet Capsule 1
+var shopCapsule2 = L.marker(LatLng(3100, -1450), { icon: shopCasuleIcon, riseOnHover: true, title: "Capsule Fragment [600 SP]" }).addTo(map).on('click', setOpacity); //Sonnet Capsule 2
+var magnet = L.marker(LatLng(3700, -1150), { icon: shopgreenChipIcon, riseOnHover: true, title: "Ferromagnetic [400 SP]" }).addTo(map).on('click', setOpacity); //Sonnet Ferromagnetic
+var protect = L.marker(LatLng(3400, -1150), { icon: shopBlueChipIcon, riseOnHover: true, title: "Protector's Capsule [400 SP]" }).addTo(map).on('click', setOpacity); //Sonnet Protector's Capsule
+var smallprotect = L.marker(LatLng(3100, -1150), { icon: shopBlueChipIcon, riseOnHover: true, title: "Pocket Magnet [400 SP]" }).addTo(map).on('click', setOpacity); //Sonnet Pocket Magnet
+var longsword = L.marker(LatLng(3400, -850), { icon: shopRedChipIcon, riseOnHover: true, title: "Sword Extension [400 SP]" }).addTo(map).on('click', setOpacity); //Sonnet Sword Extension
+var fastsword = L.marker(LatLng(3100, -850), { icon: shopRedChipIcon, riseOnHover: true, title: "Agile Alloy [400 SP]" }).addTo(map).on('click', setOpacity); //Sonnet Agile Alloy
+var shopBlueSocket = L.marker(LatLng(3400, -550), { icon: shopBlueSocket, riseOnHover: true, title: "Blue Chip Socket [500 SP]" }).addTo(map).on('click', setOpacity); //Sonnet Blue Socket
+var shopRedSocket = L.marker(LatLng(3100, -550), { icon: shopRedSocket, riseOnHover: true, title: "Red Chip Socket [500 SP]" }).addTo(map).on('click', setOpacity); //Sonnet Red Socket
+chipsSockets.addLayer(magnet);
+chipsSockets.addLayer(protect);
+chipsSockets.addLayer(smallprotect);
+chipsSockets.addLayer(longsword);
+chipsSockets.addLayer(fastsword);
+chipsSockets.addLayer(shopBlueSocket);
+chipsSockets.addLayer(shopRedSocket);
+capsules.addLayer(shopCapsule1);
+capsules.addLayer(shopCapsule2);
+keys.addLayer(shopKey);
+
+
+var reaperText = L.tooltip(LatLng(2200, 500), { content: 'Reaper Shop Items', permanent: true, direction: 'center' }).addTo(map);
+var power = L.marker(LatLng(2500, 1050), { icon: shopRedChipIcon, riseOnHover: true, title: "Power Enhancer [1000 SP]" }).addTo(map).on('click', setOpacity); //Reaper Power Enhancer
+var tungsten = L.marker(LatLng(2200, 1050), { icon: shopBlueChipIcon, riseOnHover: true, title: "Tungsten Steel[500 SP]" }).addTo(map).on('click', setOpacity); //Reaper Tungsten Steel
+
 
 
 
