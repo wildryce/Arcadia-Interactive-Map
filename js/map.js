@@ -81,27 +81,7 @@ function setState(e) {
     }
 }
 
-//function onClickCollected() {
-//    var div = document.getElementById('hoverButton');
-//    if (document.getElementById('legendButton') || document.getElementById('collectedButton')) {
-//        var div2 = document.getElementById('legendButton');
-//        div2.style.setProperty('top', '20px');
-//    }
-
-//    div.parentNode.removeChild(div);
-//}
-
-//function onClickCollected() {
-//    var div = document.getElementById('collectedButton');
-//    if (document.getElementById('legendButton')) {
-//        var div2 = document.getElementById('legendButton');
-//        div2.style.setProperty('top', '20px');
-//    }
-
-//    div.parentNode.removeChild(div);
-//}
-
-function onClickLegend() {
-    var div = document.getElementById('legendButton');
+function onClickInfo() {
+    var div = document.getElementById('infoButton');
     div.parentNode.removeChild(div);
 }
