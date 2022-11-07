@@ -3,3 +3,5 @@ This is an interactive map for the game Haiku The Robot, displaying collectibles
 
 
 This map is still a work in progress, and will include more features and information as it gets developed. 
+
+[Readme file here will be updated with more information soon]
