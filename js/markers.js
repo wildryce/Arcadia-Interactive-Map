@@ -38,7 +38,7 @@ function setOpacity(e) {
     }
 }
 
-
+window.addEventListener('click', checkShopDisplay);
 
 /*--- DISRUPTOR ICONS ------------------------------------------------*/
 var disruptorIcon = L.icon({
@@ -389,11 +389,39 @@ capsules.addLayer(shopCapsule2);
 keys.addLayer(shopKey);
 
 
+
+
 var reaperText = L.tooltip(LatLng(2200, 500), { content: 'Reaper Shop Items', permanent: true, direction: 'center' }).addTo(map);
 var power = L.marker(LatLng(2500, 1050), { icon: shopRedChipIcon, riseOnHover: true, title: "Power Enhancer [1000 SP]" }).addTo(map).on('click', setOpacity); //Reaper Power Enhancer
 var tungsten = L.marker(LatLng(2200, 1050), { icon: shopBlueChipIcon, riseOnHover: true, title: "Tungsten Steel[500 SP]" }).addTo(map).on('click', setOpacity); //Reaper Tungsten Steel
+chipsSockets.addLayer(power);
+chipsSockets.addLayer(tungsten);
 
 
+
+function checkShopDisplay() {
+    console.log("YEET");
+    if (!map.hasLayer(chipsSockets) && !map.hasLayer(capsules) && !map.hasLayer(keys)) {
+        sonnetText.removeFrom(map);
+    }
+    else {
+        sonnetText.addTo(map);
+    }
+
+    if (!map.hasLayer(chipsSockets)) {
+        reaperText.removeFrom(map);
+    }
+    else {
+        reaperText.addTo(map);
+    }
+
+    if (!map.hasLayer(chipsSockets)) {
+        echoText.removeFrom(map);
+    }
+    else {
+        echoText.addTo(map);
+    }
+}
 
 
 /*--- SCRAP PART LOCATION ICONS --------------------------------------*/
@@ -401,3 +429,27 @@ var tungsten = L.marker(LatLng(2200, 1050), { icon: shopBlueChipIcon, riseOnHove
 
 
 /*--- NPC ICONS (MAY BE IMPLEMENTED) ---------------------------------*/
+
+
+
+/*--- PIN ICONS ------------------------------------------------------*/
+var pinIcon = L.Icon.extend({
+    options: {
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+    }
+});
+
+var saveIcon = new pinIcon({ iconUrl: 'images/markers/world/healthPin.png' });
+
+var perchIcon = L.marker(LatLng(0, 0), { icon: saveIcon, riseOnHover: true, title: "" }).addTo(map).on('click', setOpacity);
+
+var savePin1 = L.marker(LatLng(-295, -3475), { icon: saveIcon, riseOnHover: true, title: "Save Station" }).addTo(map); //AW - First Save station
+var savePin2 = L.marker(LatLng(-1090, -3245), { icon: saveIcon, riseOnHover: true, title: "Save Station" }).addTo(map); //AW - Before Goldcrest Whistle
+var savePin3 = L.marker(LatLng(-955, -5140), { icon: saveIcon, riseOnHover: true, title: "Save Station" }).addTo(map); //AW - Above Electromagnetism
+var savePin4 = L.marker(LatLng(-2130, -6210), { icon: saveIcon, riseOnHover: true, title: "Save Station" }).addTo(map); //SW - Left Side
+var savePin5 = L.marker(LatLng(-2590, -3450), { icon: saveIcon, riseOnHover: true, title: "Save Station" }).addTo(map); //SW - Right Side
+
+
+var trainIcon = L.marker(LatLng(0, 0), { icon: saveIcon, riseOnHover: true, title: "" }).addTo(map).on('click', setOpacity);
+var pins = L.layerGroup([savePin1, savePin2, savePin3, savePin4, savePin5]);

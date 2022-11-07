@@ -11,23 +11,18 @@
     display: none;
 }
 
-#collectedButton {
-    position:absolute;
+#legendButton {
+    position: absolute;
     top: 20px;
     right: 20px;
     padding: 10px;
     z-index: 400;
-    opacity: 0.75;
+    opacity: 0.8;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
-#legendButton {
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    padding: 10px;
-    z-index: 400;
-    opacity: 0.75;
-}
+
 
 .my-label {
     position: absolute;
