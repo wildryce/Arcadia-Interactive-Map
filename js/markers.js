@@ -452,4 +452,4 @@ var savePin5 = L.marker(LatLng(-2590, -3450), { icon: saveIcon, riseOnHover: tru
 
 
 var trainIcon = L.marker(LatLng(0, 0), { icon: saveIcon, riseOnHover: true, title: "" }).addTo(map).on('click', setOpacity);
-var pins = L.layerGroup([savePin1, savePin2, savePin3, savePin4, savePin5]);
+var pins = L.layerGroup([savePin1, savePin2, savePin3, savePin4, savePin5]).addTo(map);
