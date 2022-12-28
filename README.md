@@ -1,6 +1,8 @@
 # Arcadia-Interactive-Map
 This is an interactive map for the game Haiku The Robot, displaying collectibles and key locations within the map.
 
+Quick Link to the map: [Arcadia Interactive Map](https://wildryce.github.io/Arcadia-Interactive-Map/)
+
 *This map is still a work in progress, and will include more features and information as it gets developed.*
 
 ## Map Info
