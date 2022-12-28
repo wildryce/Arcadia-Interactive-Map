@@ -495,12 +495,12 @@ var savePinFR2 = CreateMarker(-4135, -195, saveIcon, "Save Station", false); //F
 
 var trainIcon = new pinIcon({ iconUrl: 'images/markers/world/trainPin.png' });
 
-var trainPinAW = CreateMarker(-825, -2385, trainIcon, 1, true, "Train Station", false);
-var trainPinFR = CreateMarker(-3390, -1665, trainIcon, 1, true, "Train Station", false);
-var trainPinLB = CreateMarker(1730, -920, trainIcon, 1, true, "Train Station", false);
-var trainPinWD = CreateMarker(-2630, 2940, trainIcon, 1, true, "Train Station", false);
-var trainPinFF = CreateMarker(445, 2430, trainIcon, 1, true, "Train Station", false);
-var trainPinPE = CreateMarker(-1230, 4245, trainIcon, 1, true, "Train Station", false);
+var trainPinAW = CreateMarker(-825, -2385, trainIcon, "Train Station", false);
+var trainPinFR = CreateMarker(-3390, -1665, trainIcon, "Train Station", false);
+var trainPinLB = CreateMarker(1730, -920, trainIcon, "Train Station", false);
+var trainPinWD = CreateMarker(-2630, 2940, trainIcon,"Train Station", false);
+var trainPinFF = CreateMarker(445, 2430, trainIcon, "Train Station", false);
+var trainPinPE = CreateMarker(-1230, 4245, trainIcon, "Train Station", false);
 
 var pinList =
     [
