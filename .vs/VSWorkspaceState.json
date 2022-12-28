@@ -6,7 +6,9 @@
     "\\images",
     "\\images\\markers",
     "\\images\\markers\\collectibles",
+    "\\js",
     "\\legend"
   ],
+  "SelectedNode": "\\js\\util.js",
   "PreviewInSolutionExplorer": false
 }

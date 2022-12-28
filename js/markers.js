@@ -1,5 +1,5 @@
 /// Marker Template:
-///     L.marker(LatLng(0, 0), { icon: var, opacity: 1, riseOnHover: true, title: "" }).addTo(map).on('click', setOpacity);
+///     L.marker(LatLng(0, 0, var, opacity: 1, riseOnHover: true, title: "" }).addTo(map).on('click', changeOpacity);
 
 var gray = 'images/backgrounds/gray.png';
 var red = 'images/backgrounds/red.png';
@@ -48,15 +48,37 @@ function changeOpacity(e) {
 }
 
 
+/**
+ * 
+ * @param {any} lat - the latitude coordinate on the map
+ * @param {any} lng - the longitude coordinate on the map
+ * @param {any} ico - the icon of the marker
+ * @param {any} opa - the base opacity of the marker
+ * @param {boolean} hover - the hover condition (if it will move to front on hover)
+ * @param {string} t - the title of the marker that is displayed on hover
+ * @param {boolean} click - the condition on if the marker will be affected by clicks or not
+ */
+function CreateMarker(lat, lng, ico, t, click) {
+
+    var tempMarker = L.marker(LatLng(lat, lng), { icon: ico, opacity: 1, riseOnHover: true, title: t }).addTo(map);
+    if (click) {
+        tempMarker.on('click', changeOpacity);
+    }
+
+    return tempMarker;
+}
+
+
 
 var allIconsList = [];
+
+
 
 function AddToAllList(list) {
     for (let i = 0; i < list.length; i++) {
         allIconsList.push(list[i]);
     }
 }
-
 
 window.addEventListener('click', checkShopDisplay);
 
@@ -71,33 +93,34 @@ var disruptorIcon = L.icon({
     popupAnchor: [0, -11]
 });
 
-var aw = L.marker(LatLng(-770, -5660), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Abandoned Wastes Disruptor" }).addTo(map).on('click', changeOpacity); //Room Above Electro-Magnetism
-var aw2 = L.marker(LatLng(-655, -2135), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Abandoned Wastes Disruptor #2" }).addTo(map).on('click', changeOpacity); //Above Train
+var aw = CreateMarker(-770, -5660, disruptorIcon, "Abandoned Wastes Disruptor", true); //Room Above Electro-Magnetism
+var aw2 = CreateMarker(-655, -2135, disruptorIcon, "Abandoned Wastes Disruptor #2", true); //Above Train
 
-var lb = L.marker(LatLng(580, -950), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Last Bunker Disruptor" }).addTo(map).on('click', changeOpacity); //Electric Platforming Area
-var lb2 = L.marker(LatLng(2430, -5155), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Last Bunker Disruptor #2" }).on('click', changeOpacity); //Bell Tower
+var lb = CreateMarker(580, -950, disruptorIcon, "Last Bunker Disruptor", true); //Electric Platforming Area
+var lb2 = CreateMarker(2430, -5155, disruptorIcon, "Last Bunker Disruptor #2", true); //Bell Tower
 
-var sw = L.marker(LatLng(-2875, -3605), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Sunken Wastes Disruptor" }).addTo(map).on('click', changeOpacity); //Area above right-most FR->SW Transition Room
+var sw = CreateMarker(-2875, -3605, disruptorIcon, "Sunken Wastes Disruptor", true); //Area above right-most FR->SW Transition Room
 
-var fr = L.marker(LatLng(-3250, -445), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Forgotten Ruins Disruptor" }).addTo(map).on('click', changeOpacity); //In small area that requires Space Disruptor
+var fr = CreateMarker(-3250, -445, disruptorIcon, "Forgotten Ruins Disruptor", true); //In small area that requires Space Disruptor
 
-var wd = L.marker(LatLng(-2545, 4050), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Water Ducts Disruptor" }).addTo(map).on('click', changeOpacity); //Couple rooms right of the train room
+var wd = CreateMarker(-2545, 4050, disruptorIcon, "Water Ducts Disruptor", true); //Couple rooms right of the train room
 
-var pe = L.marker(LatLng(-1050, 4960), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Pinion's Expanse Disruptor" }).addTo(map).on('click', changeOpacity); //Before Clock Repair
+var pe = CreateMarker(-1050, 4960, disruptorIcon, "Pinion's Expanse Disruptor", true); //Before Clock Repair
 
-var ff = L.marker(LatLng(820, 3030), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Factory Facility Disruptor" }).addTo(map).on('click', changeOpacity); //Left Level 02
-var ff2 = L.marker(LatLng(835, 4990), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Factory Facility Disruptor #2" }).addTo(map).on('click', changeOpacity); //Right Level 02
+var ff = CreateMarker(820, 3030, disruptorIcon, "Factory Facility Disruptor", true); //Left Level 02
+var ff2 = CreateMarker(835, 4990, disruptorIcon, "Factory Facility Disruptor #2", true); //Right Level 02
 
-var bf = L.marker(LatLng(2230, 3845), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Blazing Furnace Disruptor" }).addTo(map).on('click', changeOpacity); //Grapple Room
+var bf = CreateMarker(2230, 3845, disruptorIcon, "Blazing Furnace Disruptor", true); //Grapple Room
 
-var cc = L.marker(LatLng(85, 855), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Central Core Disruptor" }).addTo(map).on('click', changeOpacity); //Top Right Transition from Mainframe Vault
-var cc2 = L.marker(LatLng(-1970, 1180), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Former Core Disruptor" }).on('click', changeOpacity); //Top Right of Former Core room
+var cc = CreateMarker(85, 855, disruptorIcon, "Central Core Disruptor", true); //Top Right Transition from Mainframe Vault
+var cc2 = CreateMarker(-1970, 1180, disruptorIcon, "Former Core Disruptor", true); //Top Right of Former Core room
 
-var ib = L.marker(LatLng(-1350, -2150), { icon: disruptorIcon, opacity: 1, riseOnHover: true, title: "Incinerator Burner Disruptor" }).addTo(map).on('click', changeOpacity); //Upper IB, Room before Vertical Ascent
+var ib = CreateMarker(-1350, -2150, disruptorIcon, "Incinerator Burner Disruptor", true); //Upper IB, Room before Vertical Ascent
 
-var disruptors = L.layerGroup([aw, aw2, lb, lb2, sw, fr, wd, pe, ff, ff2, bf, cc, cc2, ib]).addTo(map);
 var disruptorsList = [aw, aw2, lb, lb2, sw, fr, wd, pe, ff, ff2, bf, cc, cc2, ib];
+var disruptors = L.layerGroup(disruptorsList).addTo(map);
 AddToAllList(disruptorsList);
+
 //#endregion
 
 
@@ -120,29 +143,33 @@ var shopKeyIcon = new shopIcon({ iconUrl: 'images/markers/collectibles/RustyKey_
 //var shopSkullGreenIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/RedChip_Icon.png' });
 var shopCasuleIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/CapsuleFragment_Icon.png', shadowUrl: blue });
 
+
 var echoText = L.tooltip(LatLng(3100, -4700), { content: 'Echo Shop Items', permanent: true, direction: 'center' }).addTo(map);
-var detonate = L.marker(LatLng(3700, -4200), { icon: shopBlueChipIcon, opacity: 1, riseOnHover: true, title: "Self Detonation [400 SP]" }).addTo(map).on('click', changeOpacity); //Self Detonation
-var projectile = L.marker(LatLng(3400, -4200), { icon: shopRedChipIcon, opacity: 1, riseOnHover: true, title: "Shock Projectile [400 SP]" }).addTo(map).on('click', changeOpacity); //Shock Projectile
-var shock = L.marker(LatLng(3100, -4200), { icon: shopRedChipIcon, opacity: 1, riseOnHover: true, title: "Shock Wave [400 SP]" }).addTo(map).on('click', changeOpacity); //Shock Wave
+
+var detonate = CreateMarker(3700, -4200, shopBlueChipIcon, "Self Detonation [400 SP]", true); //Self Detonation
+var projectile = CreateMarker(3400, -4200, shopRedChipIcon, "Shock Projectile [400 SP]", true); //Shock Projectile
+var shock = CreateMarker(3100, -4200, shopRedChipIcon, "Shock Wave [400 SP]", true); //Shock Wave
 
 
 var sonnetText = L.tooltip(LatLng(3100, -2000), { content: 'Sonnet Shop Items', permanent: true, direction: 'center' }).addTo(map);
-var shopKey = L.marker(LatLng(3700, -1450), { icon: shopKeyIcon, opacity: 1, riseOnHover: true, title: "Rusted Key [ 300 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Key
-var shopCapsule1 = L.marker(LatLng(3400, -1450), { icon: shopCasuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment [450 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Capsule 1
-var shopCapsule2 = L.marker(LatLng(3100, -1450), { icon: shopCasuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment [600 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Capsule 2
-var shopBlueSocket = L.marker(LatLng(3700, -1150), { icon: shopBlueSocket, opacity: 1, riseOnHover: true, title: "Blue Chip Socket [500 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Blue Socket
-var protect = L.marker(LatLng(3400, -1150), { icon: shopBlueChipIcon, opacity: 1, riseOnHover: true, title: "Protector's Capsule [400 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Protector's Capsule
-var smallprotect = L.marker(LatLng(3100, -1150), { icon: shopBlueChipIcon, opacity: 1, riseOnHover: true, title: "Pocket Magnet [400 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Pocket Magnet
-var shopRedSocket = L.marker(LatLng(3700, -850), { icon: shopRedSocket, opacity: 1, riseOnHover: true, title: "Red Chip Socket [500 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Red Socket
-var longsword = L.marker(LatLng(3400, -850), { icon: shopRedChipIcon, opacity: 1, riseOnHover: true, title: "Sword Extension [400 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Sword Extension
-var fastsword = L.marker(LatLng(3100, -850), { icon: shopRedChipIcon, opacity: 1, riseOnHover: true, title: "Agile Alloy [400 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Agile Alloy
-var undiscovered = L.marker(LatLng(3400, -550), { icon: shopgreenChipIcon, opacity: 1, riseOnHover: true, title: "Map Sweeper [400 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Map Sweeper
-var magnet = L.marker(LatLng(3100, -550), { icon: shopgreenChipIcon, opacity: 1, riseOnHover: true, title: "Ferromagnetic [400 SP]" }).addTo(map).on('click', changeOpacity); //Sonnet Ferromagnetic
+
+var shopKey = CreateMarker(3700, -1450, shopKeyIcon, "Rusted Key [ 300 SP]", true); //Sonnet Key
+var shopCapsule1 = CreateMarker(3400, -1450, shopCasuleIcon, "Capsule Fragment [450 SP]", true); //Sonnet Capsule 1
+var shopCapsule2 = CreateMarker(3100, -1450, shopCasuleIcon, "Capsule Fragment [600 SP]", true); //Sonnet Capsule 2
+var shopBlueSocket = CreateMarker(3700, -1150, shopBlueSocket, "Blue Chip Socket [500 SP]", true); //Sonnet Blue Socket
+var protect = CreateMarker(3400, -1150, shopBlueChipIcon, "Protector's Capsule [400 SP]", true); //Sonnet Protector's Capsule
+var smallprotect = CreateMarker(3100, -1150, shopBlueChipIcon, "Pocket Magnet [400 SP]", true); //Sonnet Pocket Magnet
+var shopRedSocket = CreateMarker(3700, -850, shopRedSocket, "Red Chip Socket [500 SP]", true); //Sonnet Red Socket
+var longsword = CreateMarker(3400, -850, shopRedChipIcon, "Sword Extension [400 SP]", true); //Sonnet Sword Extension
+var fastsword = CreateMarker(3100, -850, shopRedChipIcon, "Agile Alloy [400 SP]", true); //Sonnet Agile Alloy
+var undiscovered = CreateMarker(3400, -550, shopgreenChipIcon, "Map Sweeper [400 SP]", true); //Sonnet Map Sweeper
+var magnet = CreateMarker(3100, -550, shopgreenChipIcon, "Ferromagnetic [400 SP]", true); //Sonnet Ferromagnetic
 
 
 var reaperText = L.tooltip(LatLng(2200, 500), { content: 'Reaper Shop Items', permanent: true, direction: 'center' }).addTo(map);
-var power = L.marker(LatLng(2500, 1050), { icon: shopRedChipIcon, opacity: 1, riseOnHover: true, title: "Power Enhancer [1000 SP]" }).addTo(map).on('click', changeOpacity); //Reaper Power Enhancer
-var tungsten = L.marker(LatLng(2200, 1050), { icon: shopBlueChipIcon, opacity: 1, riseOnHover: true, title: "Tungsten Steel[500 SP]" }).addTo(map).on('click', changeOpacity); //Reaper Tungsten Steel
+
+var power = CreateMarker(2500, 1050, shopRedChipIcon, "Power Enhancer [1000 SP]", true); //Reaper Power Enhancer
+var tungsten = CreateMarker(2200, 1050, shopBlueChipIcon, "Tungsten Steel[500 SP]", true); //Reaper Tungsten Steel
 //#endregion
 
 
@@ -169,22 +196,23 @@ var heatTreatmentIcon = new skillIcon({ iconUrl: 'images/markers/skills/HeatTrea
 var sealantTreatmentIcon = new skillIcon({ iconUrl: 'images/markers/skills/SealantTreatment_Icon.png' });
 var bulbletIcon = new skillIcon({ iconUrl: 'images/markers/skills/Bulblet_Icon.png' });
 var goldcrestWhistleIcon = new skillIcon({ iconUrl: 'images/markers/upgrades/GoldcrestWhistle_Icon.png' });
-var whistle = L.marker(LatLng(-1080, -2730), { icon: goldcrestWhistleIcon, opacity: 1, riseOnHover: true, title: "Goldcrest Whistle" }).addTo(map).on('click', changeOpacity);
 
 
-var wrench = L.marker(LatLng(-850, -4005), { icon: wrenchIcon, opacity: 1, riseOnHover: true, title: "Adjustable Wrench" }).addTo(map).on('click', changeOpacity);
-var ball = L.marker(LatLng(1175, 5250), { icon: bodyModifierIcon, opacity: 1, riseOnHover: true, title: "Body Modifier" }).addTo(map).on('click', changeOpacity);
-var cling = L.marker(LatLng(-1300, -5250), { icon: electromagnetismIcon, opacity: 1, riseOnHover: true, title: "Electro-Magnetism" }).addTo(map).on('click', changeOpacity);
-var djump = L.marker(LatLng(-3700, 6300), { icon: jumpBoosterIcon, opacity: 1, riseOnHover: true, title: "Jump Booster" }).addTo(map).on('click', changeOpacity);
-var bomb = L.marker(LatLng(-1950, -45), { icon: powerBombIcon, opacity: 1, riseOnHover: true, title: "Power Bomb" }).addTo(map).on('click', changeOpacity);
-var warp = L.marker(LatLng(-3430, -6985), { icon: spaceDisruptorIcon, opacity: 1, riseOnHover: true, title: "Space Disruptor" }).addTo(map).on('click', changeOpacity);
-var grapple = L.marker(LatLng(-785, 1835), { icon: stringAndHookIcon, opacity: 1, riseOnHover: true, title: "String and Hook" }).addTo(map).on('click', changeOpacity);
-var water = L.marker(LatLng(-465, 620), { icon: heatTreatmentIcon, opacity: 1, riseOnHover: true, title: "Heat Treatment" }).addTo(map).on('click', changeOpacity);
-var fire = L.marker(LatLng(-465, 765), { icon: sealantTreatmentIcon, opacity: 1, riseOnHover: true, title: "Sealant Treatment" }).addTo(map).on('click', changeOpacity);
-var light = L.marker(LatLng(-285, 170), { icon: bulbletIcon, opacity: 1, riseOnHover: true, title: "Bulblet" }).addTo(map).on('click', changeOpacity);
 
-var skills = L.layerGroup([wrench, ball, cling, djump, bomb, warp, grapple, water, fire, light, whistle]).addTo(map);
+var whistle = CreateMarker(-1080, -2730, goldcrestWhistleIcon, "Goldcrest Whistle", true);
+var wrench = CreateMarker(-850, -4005, wrenchIcon, "Adjustable Wrench", true);
+var ball = CreateMarker(1175, 5250, bodyModifierIcon, "Body Modifier", true);
+var cling = CreateMarker(-1300, -5250, electromagnetismIcon, "Electro-Magnetism", true);
+var djump = CreateMarker(-3700, 6300, jumpBoosterIcon, "Jump Booster", true);
+var bomb = CreateMarker(-1950, -45, powerBombIcon, "Power Bomb", true);
+var warp = CreateMarker(-3430, -6985, spaceDisruptorIcon, "Space Disruptor", true);
+var grapple = CreateMarker(-785, 1835, stringAndHookIcon, "String and Hook", true);
+var water = CreateMarker(-465, 620, heatTreatmentIcon, "Heat Treatment", true);
+var fire = CreateMarker(-465, 765, sealantTreatmentIcon, "Sealant Treatment", true);
+var light = CreateMarker(-285, 170, bulbletIcon, "Bulblet", true);
+
 var skillsList = [wrench, ball, cling, djump, bomb, warp, grapple, water, fire, light, whistle];
+var skills = L.layerGroup(skillsList).addTo(map);
 AddToAllList(skillsList);
 //#endregion
 
@@ -200,42 +228,42 @@ var powerCellIcon = L.icon({
     popupAnchor: [0, -11]
 });
 
-var p1 = L.marker(LatLng(-1890, -5500), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Sunken Wastes: Mysterious Egg
+var p1 = CreateMarker(-1890, -5500, powerCellIcon, "Power Cell", true); //Sunken Wastes: Mysterious Egg
 
-var p2 = L.marker(LatLng(-3670, -3260), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Forgotten Ruins: Space Disruptor Platforming Room
-var p3 = L.marker(LatLng(-3235, -2705), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Forgotten Ruins: Across from train
-var p4 = L.marker(LatLng(-3745, 1005), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Forgotten Ruins: Under Magnetic Footing Chip
+var p2 = CreateMarker(-3670, -3260, powerCellIcon, "Power Cell", true); //Forgotten Ruins: Space Disruptor Platforming Room
+var p3 = CreateMarker(-3235, -2705, powerCellIcon, "Power Cell", true); //Forgotten Ruins: Across from train
+var p4 = CreateMarker(-3745, 1005, powerCellIcon, "Power Cell", true); //Forgotten Ruins: Under Magnetic Footing Chip
 
-var p5 = L.marker(LatLng(-3365, 1320), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Water Ducts: Lower WD -> FR Transition Room
-var p6 = L.marker(LatLng(-2995, 5595), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Water Ducts: Electric Water Platforming Room
-var p7 = L.marker(LatLng(-2325, 6360), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell (Inside Elder Room)" }).addTo(map).on('click', changeOpacity); //Water Ducts: Snailbot Burrow, In Elders Room at the top
+var p5 = CreateMarker(-3365, 1320, powerCellIcon, "Power Cell", true); //Water Ducts: Lower WD -> FR Transition Room
+var p6 = CreateMarker(-2995, 5595, powerCellIcon, "Power Cell", true); //Water Ducts: Electric Water Platforming Room
+var p7 = CreateMarker(-2325, 6360, powerCellIcon, "Power Cell (Inside Elder Room)", true); //Water Ducts: Snailbot Burrow, In Elders Room at the top
 
-var p8 = L.marker(LatLng(400, -2848), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Last Bunker: Falling Transition Room LB -> AW
-var p9 = L.marker(LatLng(1310, -920), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Last Bunker: Grapple Platforming Room
-var p10 = L.marker(LatLng(2255, -3250), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //last Bunker: Hidden Grapple Room (Requires Power Bomb)
+var p8 = CreateMarker(400, -2848, powerCellIcon, "Power Cell", true); //Last Bunker: Falling Transition Room LB -> AW
+var p9 = CreateMarker(1310, -920, powerCellIcon, "Power Cell", true); //Last Bunker: Grapple Platforming Room
+var p10 = CreateMarker(2255, -3250, powerCellIcon, "Power Cell", true); //last Bunker: Hidden Grapple Room (Requires Power Bomb)
 
-var p11 = L.marker(LatLng(-315, -1585), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Central Core: Electromagnetism Vetical Platforming Room (Above Echo)
-var p12 = L.marker(LatLng(-795, -1455), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Central Core: Long Grapple Transition Room CC -> IB
-var p13 = L.marker(LatLng(-1385, 1535), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Central Core: After Car Battery Boss (Accessed from the right, platforming area)
-var p14 = L.marker(LatLng(144, 1773), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Central Core: Electric Rings Room
+var p11 = CreateMarker(-315, -1585, powerCellIcon, "Power Cell", true); //Central Core: Electromagnetism Vetical Platforming Room (Above Echo)
+var p12 = CreateMarker(-795, -1455, powerCellIcon, "Power Cell", true); //Central Core: Long Grapple Transition Room CC -> IB
+var p13 = CreateMarker(-1385, 1535, powerCellIcon, "Power Cell", true); //Central Core: After Car Battery Boss (Accessed from the right, platforming area)
+var p14 = CreateMarker(144, 1773, powerCellIcon, "Power Cell", true); //Central Core: Electric Rings Room
 
-var p15 = L.marker(LatLng(-1710, -1865), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Incinerator Burner: Behind One-way door
-var p16 = L.marker(LatLng(-2235, -2300), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Incinerator Burner: Fire Enemy Pogo room
+var p15 = CreateMarker(-1710, -1865, powerCellIcon, "Power Cell", true); //Incinerator Burner: Behind One-way door
+var p16 = CreateMarker(-2235, -2300, powerCellIcon, "Power Cell", true); //Incinerator Burner: Fire Enemy Pogo room
 
-var p17 = L.marker(LatLng(1305, 1800), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell (Boss Reward)" }).addTo(map).on('click', changeOpacity); //Factory Facility: Awarded after defeating Surveillance Bot boss
-var p18 = L.marker(LatLng(935, 3925), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Factory Facility: Behind One-way door (progressional door)
-var p19 = L.marker(LatLng(155, 6120), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Factory Facility: Vertical Transition Room between FF -> PE
-var p20 = L.marker(LatLng(545, 4905), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Factory Facility: Grapple between Sawblades
-var p21 = L.marker(LatLng(1415, 3325), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Factory Facility: Bottom left room of vertical platform room to RS
+var p17 = CreateMarker(1305, 1800, powerCellIcon, "Power Cell (Boss Reward)", true); //Factory Facility: Awarded after defeating Surveillance Bot boss
+var p18 = CreateMarker(935, 3925, powerCellIcon, "Power Cell", true); //Factory Facility: Behind One-way door (progressional door)
+var p19 = CreateMarker(155, 6120, powerCellIcon, "Power Cell", true); //Factory Facility: Vertical Transition Room between FF -> PE
+var p20 = CreateMarker(545, 4905, powerCellIcon, "Power Cell", true); //Factory Facility: Grapple between Sawblades
+var p21 = CreateMarker(1415, 3325, powerCellIcon, "Power Cell", true); //Factory Facility: Bottom left room of vertical platform room to RS
 
-var p22 = L.marker(LatLng(1810, 2830), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Ruined Surface: Right-most before FF Transition, On top of wall
+var p22 = CreateMarker(1810, 2830, powerCellIcon, "Power Cell", true); //Ruined Surface: Right-most before FF Transition, On top of wall
 
-var p23 = L.marker(LatLng(1720, 6602), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell" }).addTo(map).on('click', changeOpacity); //Blazing Furnace: Bottom Right of first room
+var p23 = CreateMarker(1720, 6602, powerCellIcon, "Power Cell", true); //Blazing Furnace: Bottom Right of first room
 
-var p24 = L.marker(LatLng(-1305, 5065), { icon: powerCellIcon, opacity: 1, riseOnHover: true, title: "Power Cell (Boss Reward)" }).addTo(map).on('click', changeOpacity); //Pinion's Expanse: Awarded from Mischevious
+var p24 = CreateMarker(-1305, 5065, powerCellIcon, "Power Cell (Boss Reward)", true); //Pinion's Expanse: Awarded from Mischevious
 
-var powerCells = L.layerGroup([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24]).addTo(map);
 var powerCellsList = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24];
+var powerCells = L.layerGroup(powerCellsList).addTo(map);
 AddToAllList(powerCellsList);
 //#endregion
 
@@ -256,25 +284,25 @@ var blueChipIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/BlueChip_Ico
 var redChipIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/RedChip_Icon.png' });
 var greenChipIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/GreenChip_Icon.png' });
 
-var nomad = L.marker(LatLng(690, -3365), { icon: blueChipIcon, opacity: 1, riseOnHover: true, title: "Nomad's Plate" }).addTo(map).on('click', changeOpacity); // Nomad's Plate
-var sawblade = L.marker(LatLng(-2210, 3165), { icon: blueChipIcon, opacity: 1, riseOnHover: true, title: "Sawblade" }).addTo(map).on('click', changeOpacity); //Sawblade
-var transputer = L.marker(LatLng(-2515, -5715), { icon: blueChipIcon, opacity: 1, riseOnHover: true, title: "Amplifying Transputer" }).addTo(map).on('click', changeOpacity); //Amplifying Transputer
-var qrepair = L.marker(LatLng(-155, 3890), { icon: blueChipIcon, opacity: 1, riseOnHover: true, title: "Quick Repair (Quest Reward)" }).addTo(map).on('click', changeOpacity); //Quick Repair
-var fastcool = L.marker(LatLng(-1680, 2840), { icon: blueChipIcon, opacity: 1, riseOnHover: true, title: "Coolant Soluble" }).addTo(map).on('click', changeOpacity); //Coolant Soluble
+var nomad = CreateMarker(690, -3365, blueChipIcon, "Nomad's Plate", true); // Nomad's Plate
+var sawblade = CreateMarker(-2210, 3165, blueChipIcon, "Sawblade", true); //Sawblade
+var transputer = CreateMarker(-2515, -5715, blueChipIcon, "Amplifying Transputer", true); //Amplifying Transputer
+var qrepair = CreateMarker(-155, 3890, blueChipIcon, "Quick Repair (Quest Reward)", true); //Quick Repair
+var fastcool = CreateMarker(-1680, 2840, blueChipIcon, "Coolant Soluble", true); //Coolant Soluble
 
-var crit = L.marker(LatLng(-205, -2475), { icon: redChipIcon, opacity: 1, riseOnHover: true, title: "Infinity Edge" }).addTo(map).on('click', changeOpacity); // Infinity Edge
-var spark = L.marker(LatLng(-1280, -405), { icon: redChipIcon, opacity: 1, riseOnHover: true, title: "Electro-Emitter (Quatern Reward [12 Power Cells])" }).addTo(map).on('click', changeOpacity); // Electro-Emitter
-var lightning = L.marker(LatLng(-2243, -3810), { icon: redChipIcon, opacity: 1, riseOnHover: true, title: "Bulb Relation" }).addTo(map).on('click', changeOpacity); // Bulb Relation
-var steady = L.marker(LatLng(-3560, 1075), { icon: redChipIcon, opacity: 1, riseOnHover: true, title: "Magnetic Footing" }).addTo(map).on('click', changeOpacity); // Magnetic Footing
-var bombcost = L.marker(LatLng(910, 140), { icon: redChipIcon, opacity: 1, riseOnHover: true, title: "Power Processor (Behind Wall: Requires both skulls)" }).addTo(map).on('click', changeOpacity); // Power Processor
-var powerblink = L.marker(LatLng(-3450, -3230), { icon: redChipIcon, opacity: 1, riseOnHover: true, title: "Space Disturbance" }).addTo(map).on('click', changeOpacity); // Space Disturbance
-var orbs = L.marker(LatLng(-1395, 890), { icon: redChipIcon, opacity: 1, riseOnHover: true, title: "Electric Orbs (Boss Reward)" }).addTo(map).on('click', changeOpacity); // Electric Orbs
+var crit = CreateMarker(-205, -2475, redChipIcon, "Infinity Edge", true); // Infinity Edge
+var spark = CreateMarker(-1280, -405, redChipIcon, "Electro-Emitter (Quatern Reward [12 Power Cells])", true); // Electro-Emitter
+var lightning = CreateMarker(-2243, -3810, redChipIcon, "Bulb Relation", true); // Bulb Relation
+var steady = CreateMarker(-3560, 1075, redChipIcon, "Magnetic Footing", true); // Magnetic Footing
+var bombcost = CreateMarker(910, 140, redChipIcon, "Power Processor (Behind Wall: Requires both skulls)", true); // Power Processor
+var powerblink = CreateMarker(-3450, -3230, redChipIcon, "Space Disturbance", true); // Space Disturbance
+var orbs = CreateMarker(-1395, 890, redChipIcon, "Electric Orbs (Boss Reward)", true); // Electric Orbs
 
-var speed = L.marker(LatLng(-1692, -3225), { icon: greenChipIcon, opacity: 1, riseOnHover: true, title: "Gyro-Accelerator" }).addTo(map).on('click', changeOpacity); //Gyro-Accelerator
-var noheat = L.marker(LatLng(1980, -2510), { icon: greenChipIcon, opacity: 1, riseOnHover: true, title: "Heat Drive" }).addTo(map).on('click', changeOpacity); //Heat Drive
-var autorepair = L.marker(LatLng(190, 4195), { icon: greenChipIcon, opacity: 1, riseOnHover: true, title: "Auto Repair" }).addTo(map).on('click', changeOpacity); //Auto Repair
-var extract = L.marker(LatLng(620, 3015), { icon: greenChipIcon, opacity: 1, riseOnHover: true, title: "Extractor" }).addTo(map).on('click', changeOpacity); //Extractor
-var autoroll = L.marker(LatLng(-3037, 5945), { icon: greenChipIcon, opacity: 1, riseOnHover: true, title: "Auto Modifier" }).addTo(map).on('click', changeOpacity); //Auto Modifier
+var speed = CreateMarker(-1692, -3225, greenChipIcon, "Gyro-Accelerator", true); //Gyro-Accelerator
+var noheat = CreateMarker(1980, -2510, greenChipIcon, "Heat Drive", true); //Heat Drive
+var autorepair = CreateMarker(190, 4195, greenChipIcon, "Auto Repair", true); //Auto Repair
+var extract = CreateMarker(620, 3015, greenChipIcon, "Extractor", true); //Extractor
+var autoroll = CreateMarker(-3037, 5945, greenChipIcon, "Auto Modifier", true); //Auto Modifier
 
 var socketIcon = L.Icon.extend({
     options: {
@@ -291,15 +319,16 @@ var blueSocketIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/BlueSocket
 var redSocketIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/RedSocket_Icon.png' });
 var greenSocketIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/GreenSocket_Icon.png' });
 
-var bsocket = L.marker(LatLng(-1830, 6428), { icon: blueSocketIcon, opacity: 1, riseOnHover: true, title: "Blue Chip Socket" }).addTo(map).on('click', changeOpacity); //Blue Socket
-var rsocket = L.marker(LatLng(2630, 5965), { icon: redSocketIcon, opacity: 1, riseOnHover: true, title: "Red Chip Socket" }).addTo(map).on('click', changeOpacity); //Red Socket
-var gsocket = L.marker(LatLng(-3945, -1035), { icon: greenSocketIcon, opacity: 1, riseOnHover: true, title: "Green Chip Socket" }).addTo(map).on('click', changeOpacity); //Green Socket
+var bsocket = CreateMarker(-1830, 6428, blueSocketIcon, "Blue Chip Socket", true); //Blue Socket
+var rsocket = CreateMarker(2630, 5965, redSocketIcon, "Red Chip Socket", true); //Red Socket
+var gsocket = CreateMarker(-3945, -1035, greenSocketIcon, "Green Chip Socket", true); //Green Socket
 
 var blueChips = [nomad, sawblade, transputer, qrepair, fastcool, bsocket, protect, smallprotect, shopBlueSocket, detonate, tungsten];
 var redChips = [crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket, longsword, fastsword, shopRedSocket, projectile, shock, power, undiscovered];
 var greenChips = [speed, noheat, autorepair, extract, autoroll, gsocket, magnet];
-var chipsSockets = L.layerGroup([nomad, sawblade, transputer, qrepair, fastcool, bsocket, crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket, speed, noheat, autorepair, extract, autoroll, gsocket, magnet, protect, smallprotect, longsword, fastsword, shopBlueSocket, shopRedSocket, power, tungsten, detonate, projectile, shock, undiscovered]).addTo(map);
-var chipSocketList = [nomad, sawblade, transputer, qrepair, fastcool, bsocket, crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket, speed, noheat, autorepair, extract, autoroll, gsocket, magnet, protect, smallprotect, longsword, fastsword, shopBlueSocket, shopRedSocket, power, tungsten, detonate, projectile, shock, undiscovered]
+
+var chipSocketList = [nomad, sawblade, transputer, qrepair, fastcool, bsocket, crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket, speed, noheat, autorepair, extract, autoroll, gsocket, magnet, protect, smallprotect, longsword, fastsword, shopBlueSocket, shopRedSocket, power, tungsten, detonate, projectile, shock, undiscovered];
+var chipsSockets = L.layerGroup(chipSocketList).addTo(map);
 AddToAllList(chipSocketList);
 //#endregion
 
@@ -315,19 +344,19 @@ var capsuleIcon = L.icon({
     popupAnchor: [0, -11]
 });
 
-var cap1 = L.marker(LatLng(-1235, -475), { icon: capsuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment (Quatern Reward [6 Power Cells])" }).addTo(map).on('click', changeOpacity); //Quatern Reward 1
-var cap2 = L.marker(LatLng(-1235, -345), { icon: capsuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment (Quatern Reward [18 Power Cells])" }).addTo(map).on('click', changeOpacity); //Quatern Reward 2
-var cap3 = L.marker(LatLng(-715, -3570), { icon: capsuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment (Boss Reward)" }).addTo(map).on('click', changeOpacity); //Tyre Boss Reward
-var cap4 = L.marker(LatLng(-1115, 4005), { icon: capsuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment" }).addTo(map).on('click', changeOpacity); //Pinion's Expanse: Beside Clock
-var cap5 = L.marker(LatLng(-1805, -6130), { icon: capsuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment (Boss Reward)" }).addTo(map).on('click', changeOpacity); //Drill Worm Reward
-var cap6 = L.marker(LatLng(1610, 5893), { icon: capsuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment"}).addTo(map).on('click', changeOpacity); //Factory Facility
-var cap7 = L.marker(LatLng(-3290, -620), { icon: capsuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment" }).addTo(map).on('click', changeOpacity); //Above First Tree
-var cap8 = L.marker(LatLng(-1785, 4435), { icon: capsuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment" }).addTo(map).on('click', changeOpacity); //Water Ducts
-var cap9 = L.marker(LatLng(2123, -705), { icon: capsuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment"}).addTo(map).on('click', changeOpacity); //Last Bunker: Past Monitor Room
-var cap10 = L.marker(LatLng(-165, 1085), { icon: capsuleIcon, opacity: 1, riseOnHover: true, title: "Capsule Fragment" }).addTo(map).on('click', changeOpacity); //Central Core
+var cap1 = CreateMarker(-1235, -475, capsuleIcon, "Capsule Fragment (Quatern Reward [6 Power Cells])", true); //Quatern Reward 1
+var cap2 = CreateMarker(-1235, -345, capsuleIcon, "Capsule Fragment (Quatern Reward [18 Power Cells])", true); //Quatern Reward 2
+var cap3 = CreateMarker(-715, -3570, capsuleIcon, "Capsule Fragment (Boss Reward)", true); //Tyre Boss Reward
+var cap4 = CreateMarker(-1115, 4005, capsuleIcon, "Capsule Fragment", true); //Pinion's Expanse: Beside Clock
+var cap5 = CreateMarker(-1915, -5765, capsuleIcon, "Capsule Fragment (Boss Reward)", true); //Drill Worm Reward
+var cap6 = CreateMarker(1610, 5893, capsuleIcon, "Capsule Fragment", true); //Factory Facility
+var cap7 = CreateMarker(-3290, -620, capsuleIcon, "Capsule Fragment", true); //Above First Tree
+var cap8 = CreateMarker(-1785, 4435, capsuleIcon, "Capsule Fragment", true); //Water Ducts
+var cap9 = CreateMarker(2123, -705, capsuleIcon, "Capsule Fragment", true); //Last Bunker: Past Monitor Room
+var cap10 = CreateMarker(-165, 1085, capsuleIcon, "Capsule Fragment", true); //Central Core
 
-var capsules = L.layerGroup([cap1, cap2, cap3, cap4, cap5, cap6, cap7, cap8, cap9, cap10, shopCapsule1, shopCapsule2]).addTo(map);
 var capsulesList = [cap1, cap2, cap3, cap4, cap5, cap6, cap7, cap8, cap9, cap10, shopCapsule1, shopCapsule2];
+var capsules = L.layerGroup(capsulesList).addTo(map);
 AddToAllList(capsulesList);
 //#endregion
 
@@ -343,12 +372,12 @@ var coolantIcon = L.icon({
     popupAnchor: [0, -11]
 });
 
-var coolant1 = L.marker(LatLng(-3250, 5350), { icon: coolantIcon, opacity: 1, riseOnHover: true, title: "Liquid Coolant" }).addTo(map).on('click', changeOpacity); //Water Ducts
-var coolant2 = L.marker(LatLng(-3010, -5495), { icon: coolantIcon, opacity: 1, riseOnHover: true, title: "Liquid Coolant" }).addTo(map).on('click', changeOpacity); //Research Lab (Forgotten Ruins)
-var coolant3 = L.marker(LatLng(2560, 2915), { icon: coolantIcon, opacity: 1, riseOnHover: true, title: "Liquid Coolant" }).addTo(map).on('click', changeOpacity); //Blazing Furnace
+var coolant1 = CreateMarker(-3250, 5350, coolantIcon, "Liquid Coolant", true); //Water Ducts
+var coolant2 = CreateMarker(-3010, -5495, coolantIcon, "Liquid Coolant", true); //Research Lab (Forgotten Ruins)
+var coolant3 = CreateMarker(2560, 2915, coolantIcon, "Liquid Coolant", true); //Blazing Furnace
 
-var coolants = L.layerGroup([coolant1, coolant2, coolant3]).addTo(map);
 var coolantsList = [coolant1, coolant2, coolant3];
+var coolants = L.layerGroup(coolantsList).addTo(map);
 AddToAllList(coolantsList);
 //#endregion
 
@@ -364,12 +393,12 @@ var rustedKeyIcon = L.icon({
     popupAnchor: [0, -11]
 });
 
-var key1 = L.marker(LatLng(-505, -4175), { icon: rustedKeyIcon, opacity: 1, riseOnHover: true, title: "Rusted Key" }).addTo(map).on('click', changeOpacity); //Abandoned Wastes Key
-var key2 = L.marker(LatLng(-2695, -6580), { icon: rustedKeyIcon, opacity: 1, riseOnHover: true, title: "Rusted Key" }).addTo(map).on('click', changeOpacity); //Sunken Wastes Key
-var key3 = L.marker(LatLng(910, 785), { icon: rustedKeyIcon, opacity: 1, riseOnHover: true, title: "Rusted Key (Slate Reward)" }).addTo(map).on('click', changeOpacity); //Catacombs (Given after ???)
+var key1 = CreateMarker(-505, -4175, rustedKeyIcon, "Rusted Key", true); //Abandoned Wastes Key
+var key2 = CreateMarker(-2695, -6580, rustedKeyIcon, "Rusted Key", true); //Sunken Wastes Key
+var key3 = CreateMarker(910, 785, rustedKeyIcon, "Rusted Key (Slate Reward)", true); //Catacombs (Given after ???)
 
-var keys = L.layerGroup([key1, key2, key3, shopKey]).addTo(map);
 var keysList = [key1, key2, key3, shopKey];
+var keys = L.layerGroup(keysList).addTo(map);
 AddToAllList(keysList);
 //#endregion
 
@@ -387,13 +416,14 @@ var collectibleIcon = L.Icon.extend({
 });
 
 var cassetteIcon = new collectibleIcon({ iconUrl: 'images/markers/collectibles/Cassette_Icon.png' });
-var cassette = L.marker(LatLng(820, -1170), { icon: cassetteIcon, opacity: 1, riseOnHover: true, title: "Melody's Cassette (Puzzle Reward)" }).addTo(map).on('click', changeOpacity); //Given by Pinion
+var cassette = CreateMarker(820, -1170, cassetteIcon, "Melody's Cassette (Puzzle Reward)", true); //Given by Pinion
 
 var electricKeyIcon = new collectibleIcon({ iconUrl: 'images/markers/collectibles/ElectricKey_Icon.png' });
-var electricKey = L.marker(LatLng(-2490, -75), { icon: electricKeyIcon, opacity: 1, riseOnHover: true, title: "Electric Key" }).addTo(map).on('click', changeOpacity); //Given by Pinion
+var electricKey = CreateMarker(-2490, -75, electricKeyIcon, "Electric Key", true); //Given by Pinion
 
-var misc = L.layerGroup([cassette, electricKey]).addTo(map);
+
 var miscList = [cassette, electricKey];
+var misc = L.layerGroup(miscList).addTo(map);
 AddToAllList(miscList);
 //#endregion
 
@@ -410,12 +440,12 @@ var protonIcon = new bossIcon({ iconUrl: 'images/markers/world/ProtonBoss_Icon.p
 var electronIcon = new bossIcon({ iconUrl: 'images/markers/world/ElectronBoss_Icon.png' });
 var NeutronIcon = new bossIcon({ iconUrl: 'images/markers/world/NeutronBoss_Icon.png' });
 
-var proton = L.marker(LatLng(2550, 3305), { icon: protonIcon, opacity: 1, riseOnHover: true, title: "Proton (Boss)" }).addTo(map).on('click', changeOpacity); //Proton
-var electron = L.marker(LatLng(-2645, -320), { icon: electronIcon, opacity: 1, riseOnHover: true, title: "Electron (Boss)" }).addTo(map).on('click', changeOpacity); //Electron
-var neutron = L.marker(LatLng(970, -4065), { icon: NeutronIcon, opacity: 1, riseOnHover: true, title: "Neutron (Boss)" }).addTo(map).on('click', changeOpacity); //Neutron
+var proton = CreateMarker(2550, 3305, protonIcon, "Proton (Boss)", true); //Proton
+var electron = CreateMarker(-2645, -320, electronIcon, "Electron (Boss)", true); //Electron
+var neutron = CreateMarker(970, -4065, NeutronIcon, "Neutron (Boss)", true); //Neutron
 
-var bosses = L.layerGroup([proton, electron, neutron]).addTo(map);
 var bossList = [proton, electron, neutron];
+var bosses = L.layerGroup(bossList).addTo(map);
 AddToAllList(bossList);
 //#endregion
 
@@ -429,18 +459,55 @@ var pinIcon = L.Icon.extend({
 });
 
 var saveIcon = new pinIcon({ iconUrl: 'images/markers/world/healthPin.png' });
+//var savePin = CreateMarker(0, 0, saveIcon, "Save Station", false); //
+//var perchIcon = new pinIcon({ iconUrl: 'images/markers/world/perchPin.png' });
 
-var perchIcon = L.marker(LatLng(0, 0), { icon: saveIcon, riseOnHover: true, title: "" }).addTo(map);
+var savePinAW1 = CreateMarker(-295, -3475, saveIcon, "Save Station", false); //AW - First Save station
+var savePinAW2 = CreateMarker(-955, -5140, saveIcon, "Save Station", false); //AW - Above Electromagnetism
+var savePinAW3 = CreateMarker(-1270, -3280, saveIcon, "Save Station", false); //AW - After Goldcrest Whistle
 
-var savePin1 = L.marker(LatLng(-295, -3475), { icon: saveIcon, opacity: 1, riseOnHover: true, title: "Save Station" }).addTo(map); //AW - First Save station
-var savePin2 = L.marker(LatLng(-1090, -3245), { icon: saveIcon, opacity: 1, riseOnHover: true, title: "Save Station" }).addTo(map); //AW - Before Goldcrest Whistle
-var savePin3 = L.marker(LatLng(-955, -5140), { icon: saveIcon, opacity: 1, riseOnHover: true, title: "Save Station" }).addTo(map); //AW - Above Electromagnetism
-var savePin4 = L.marker(LatLng(-2130, -6210), { icon: saveIcon, opacity: 1, riseOnHover: true, title: "Save Station" }).addTo(map); //SW - Left Side
-var savePin5 = L.marker(LatLng(-2590, -3450), { icon: saveIcon, opacity: 1, riseOnHover: true, title: "Save Station" }).addTo(map); //SW - Right Side
+var savePinCC1 = CreateMarker(-75, 575, saveIcon, "Save Station", false); //CC - Mainframe Vault
+var savePinCC2 = CreateMarker(-1660, 5, saveIcon, "Save Station", false); //CC - Before Car Battery Boss
+var savePinCC3 = CreateMarker(-2400, 205, saveIcon, "Save Station", false); //CC - Near Electric Key / Electron Boss
+
+var savePinPE = CreateMarker(-1240, 3580, saveIcon, "Save Station", false); //PE - Entrance
+
+var savePinSW1 = CreateMarker(-2130, -6210, saveIcon, 1, true, "Save Station", false); //SW - Left Side
+var savePinSW2 = CreateMarker(-2590, -3450, saveIcon, 1, true, "Save Station", false); //SW - Right Side
+
+var savePinFF1 = CreateMarker(420, 3740, saveIcon, "Save Station", false); //FF - Right of Train Room; Level 0
+var savePinFF2 = CreateMarker(645, 2555, saveIcon, "Save Station", false); //FF - Above Train Room; Extractor Chip Room; Level 1
+var savePinFF3 = CreateMarker(1100, 6805, saveIcon, "Save Station", false); //FF - Right of Sawblade Boss; Level 2
+
+var savePinBF = CreateMarker(2511, 5675, saveIcon, "Save Station", false); //BF - Before Red Socket Room
+
+var savePinLB1 = CreateMarker(1230, -2620, saveIcon, "Save Station", false); //LB - Near Kitchen
+var savePinLB2 = CreateMarker(2045, -4595, saveIcon, "Save Station", false); //LB - After Bell Tower (Giant Pit Multi-Room)
+
+var savePinIB = CreateMarker(-2130, -1025, saveIcon, "Save Station", false); //IB - After Sacrifice Room
+
+var savePinWD1 = CreateMarker(-2235, 2645, saveIcon, "Save Station", false); //WD - After Entrance Tall Room
+var savePinWD2 = CreateMarker(-3410, 4155, saveIcon, "Save Station", false); //WD - Before Spider Boss(es)
+
+var savePinFR1 = CreateMarker(-3675, -3835, saveIcon, "Save Station", false); //FR - Under Rusty
+var savePinFR2 = CreateMarker(-4135, -195, saveIcon, "Save Station", false); //FR - Before Archives Final Bosses
 
 
-var trainIcon = L.marker(LatLng(0, 0), { icon: saveIcon, opacity: 1, riseOnHover: true, title: "" }).addTo(map);
-var pins = L.layerGroup([savePin1, savePin2, savePin3, savePin4, savePin5]).addTo(map);
+var trainIcon = new pinIcon({ iconUrl: 'images/markers/world/trainPin.png' });
+
+var trainPinAW = CreateMarker(-825, -2385, trainIcon, 1, true, "Train Station", false);
+var trainPinFR = CreateMarker(-3390, -1665, trainIcon, 1, true, "Train Station", false);
+var trainPinLB = CreateMarker(1730, -920, trainIcon, 1, true, "Train Station", false);
+var trainPinWD = CreateMarker(-2630, 2940, trainIcon, 1, true, "Train Station", false);
+var trainPinFF = CreateMarker(445, 2430, trainIcon, 1, true, "Train Station", false);
+var trainPinPE = CreateMarker(-1230, 4245, trainIcon, 1, true, "Train Station", false);
+
+var pinList =
+    [
+        savePinAW1, savePinAW2, savePinAW3, savePinCC1, savePinCC2, savePinCC3, savePinPE, savePinSW1, savePinSW2, savePinFF1, savePinFF2, savePinFF3, savePinBF, savePinLB1, savePinLB2, savePinIB, savePinWD1, savePinWD2, savePinFR1, savePinFR2,
+        trainPinAW, trainPinFR, trainPinLB, trainPinWD, trainPinFF, trainPinPE
+    ];
+var pins = L.layerGroup(pinList).addTo(map);
 //#endregion
 
 
