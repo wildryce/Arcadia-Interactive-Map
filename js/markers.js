@@ -11,6 +11,18 @@ var brown = 'images/backgrounds/brown.png';
 var pink = 'images/backgrounds/pink.png';
 var teal = 'images/backgrounds/teal.png';
 
+var allIconsList = [];
+
+/// SHOP LAYOUTS
+var zoomMod = 30;
+var echoTextPos = [2450, 1000];
+var echoBounds = [LatLng(echoTextPos[0] - 150, echoTextPos[1]), LatLng(echoTextPos[0] + 150, echoTextPos[1] + 900)];
+
+var sonnetTextPos = [300, -5350];
+var sonnetBounds = [LatLng(sonnetTextPos[0] - 450, sonnetTextPos[1]), LatLng(sonnetTextPos[0] + 450, sonnetTextPos[1] + 1200)];
+
+var reaperTextPos = [2100, 1000];
+var reaperBounds = [LatLng(reaperTextPos[0] - 150, reaperTextPos[1]), LatLng(reaperTextPos[0] + 150, reaperTextPos[1] + 900)];
 
 
 /** Converts given LatLng values to properly be displayed on map .
@@ -26,21 +38,6 @@ function LatLng(lat, lng) {
     return [newLat, newLng];
 }
 
-function Lat(lat) {
-    var latMod = 9425;
-
-    var newLat = lat + latMod;
-
-    return newLat;
-}
-
-function Lng(lng) {
-    var lngMod = 7750;
-
-    var newLng = lng + lngMod;
-
-    return newLng
-}
 
 function changeOpacity(e) {
     var marker = e.target;
@@ -83,16 +80,12 @@ function CreateMarker(lat, lng, ico, t, click) {
 }
 
 
-
-var allIconsList = [];
-
-
-
 function AddToAllList(list) {
     for (let i = 0; i < list.length; i++) {
         allIconsList.push(list[i]);
     }
 }
+
 
 function ResetAll() {
     for (let i = 0; i < allIconsList.length; i++) {
@@ -101,21 +94,12 @@ function ResetAll() {
             marker.setOpacity(1);
         }
     }
+    SaveMarkerStates();
 }
+
 
 window.addEventListener('click', checkShopDisplay);
 
-
-/// SHOP LAYOUTS
-var zoomMod = 30;
-var echoTextPos = [2450, 1000];
-var echoBounds = [LatLng(echoTextPos[0] - 150, echoTextPos[1]), LatLng(echoTextPos[0] + 150, echoTextPos[1] + 900)];
-
-var sonnetTextPos = [300, -5350];
-var sonnetBounds = [LatLng(sonnetTextPos[0] - 450, sonnetTextPos[1]), LatLng(sonnetTextPos[0] + 450, sonnetTextPos[1] + 1200)];
-
-var reaperTextPos = [2100, 1000];
-var reaperBounds = [LatLng(reaperTextPos[0] - 150, reaperTextPos[1]), LatLng(reaperTextPos[0] + 150, reaperTextPos[1] + 900)];
 
 //#region Disruptors
 var disruptorIcon = L.icon({
@@ -159,6 +143,87 @@ AddToAllList(disruptorsList);
 //#endregion
 
 
+//#region Pins
+var pinIcon = L.Icon.extend({
+    options: {
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+    }
+});
+
+var saveIcon = new pinIcon({ iconUrl: 'images/markers/world/healthPin.png' });
+
+var savePinAW1 = CreateMarker(-295, -3475, saveIcon, "Save Station", false); //AW - First Save station
+var savePinAW2 = CreateMarker(-955, -5140, saveIcon, "Save Station", false); //AW - Above Electromagnetism
+var savePinAW3 = CreateMarker(-1270, -3280, saveIcon, "Save Station", false); //AW - After Goldcrest Whistle
+
+var savePinCC1 = CreateMarker(-75, 575, saveIcon, "Save Station", false); //CC - Mainframe Vault
+var savePinCC2 = CreateMarker(-1660, 5, saveIcon, "Save Station", false); //CC - Before Car Battery Boss
+var savePinCC3 = CreateMarker(-2400, 205, saveIcon, "Save Station", false); //CC - Near Electric Key / Electron Boss
+
+var savePinPE = CreateMarker(-1240, 3580, saveIcon, "Save Station", false); //PE - Entrance
+
+var savePinSW1 = CreateMarker(-2130, -6210, saveIcon, 1, true, "Save Station", false); //SW - Left Side
+var savePinSW2 = CreateMarker(-2590, -3450, saveIcon, 1, true, "Save Station", false); //SW - Right Side
+
+var savePinFF1 = CreateMarker(420, 3740, saveIcon, "Save Station", false); //FF - Right of Train Room; Level 0
+var savePinFF2 = CreateMarker(645, 2555, saveIcon, "Save Station", false); //FF - Above Train Room; Extractor Chip Room; Level 1
+var savePinFF3 = CreateMarker(1100, 6805, saveIcon, "Save Station", false); //FF - Right of Sawblade Boss; Level 2
+
+var savePinBF = CreateMarker(2511, 5675, saveIcon, "Save Station", false); //BF - Before Red Socket Room
+
+var savePinLB1 = CreateMarker(1230, -2620, saveIcon, "Save Station", false); //LB - Near Kitchen
+var savePinLB2 = CreateMarker(2045, -4595, saveIcon, "Save Station", false); //LB - After Bell Tower (Giant Pit Multi-Room)
+
+var savePinIB = CreateMarker(-2130, -1025, saveIcon, "Save Station", false); //IB - After Sacrifice Room
+
+var savePinWD1 = CreateMarker(-2235, 2645, saveIcon, "Save Station", false); //WD - After Entrance Tall Room
+var savePinWD2 = CreateMarker(-3410, 4155, saveIcon, "Save Station", false); //WD - Before Spider Boss(es)
+
+var savePinFR1 = CreateMarker(-3675, -3835, saveIcon, "Save Station", false); //FR - Under Rusty
+var savePinFR2 = CreateMarker(-4135, -195, saveIcon, "Save Station", false); //FR - Before Archives Final Bosses
+
+
+var trainIcon = new pinIcon({ iconUrl: 'images/markers/world/trainPin.png' });
+
+var trainPinAW = CreateMarker(-825, -2385, trainIcon, "Train Station", false); //Abandoned Wastes
+var trainPinFR = CreateMarker(-3390, -1665, trainIcon, "Train Station", false); //Forgotten Ruins
+var trainPinLB = CreateMarker(1730, -920, trainIcon, "Train Station", false); //Last Bunker
+var trainPinWD = CreateMarker(-2630, 2940, trainIcon, "Train Station", false); //Water Ducts
+var trainPinFF = CreateMarker(445, 2430, trainIcon, "Train Station", false); //Factory Facility
+var trainPinPE = CreateMarker(-1230, 4245, trainIcon, "Train Station", false); //Pinion's Expanse
+var trainPinCC = CreateMarker(-1140, 405, trainIcon, "Train Station", false); //Central Core (Corrupt Addition)
+var trainPinSW = CreateMarker(-2506, -5195, trainIcon, "Train Station", false); //Sunken Wastes (Corrupt Addition)
+
+
+
+var perchIcon = new pinIcon({ iconUrl: 'images/markers/world/perchPin.png' });
+
+//var perchPin = CreateMarker(0, 0, perchIcon, "Perch", false);
+var perchPinAW = CreateMarker(-1080, -2740, perchIcon, "Perch", false);
+var perchPinCC1 = CreateMarker(-75, 710, perchIcon, "Perch", false);
+var perchPinCC2 = CreateMarker(-2400, 100, perchIcon, "Perch", false);
+var perchPinLB1 = CreateMarker(1220, -2455, perchIcon, "Perch", false);
+var perchPinLB2 = CreateMarker(2045, -4705, perchIcon, "Perch", false);
+var perchPinSW = CreateMarker(-2525, -4760, perchIcon, "Perch", false);
+var perchPinFR1 = CreateMarker(-3675, -3965, perchIcon, "Perch", false);
+var perchPinFR2 = CreateMarker(-4020, 85, perchIcon, "Perch", false); //Lost Archives
+var perchPinWD1 = CreateMarker(-2235, 2570, perchIcon, "Perch", false);
+var perchPinWD2 = CreateMarker(-3410, 4545, perchIcon, "Perch", false);
+var perchPinPE = CreateMarker(-1100, 3605, perchIcon, "Perch", false);
+var perchPinFF1 = CreateMarker(420, 3910, perchIcon, "Perch", false);
+var perchPinFF2 = CreateMarker(1100, 6980, perchIcon, "Perch", false);
+var perchPinBF = CreateMarker(2510, 5515, perchIcon, "Perch", false);
+
+
+var pinList =
+    [
+        savePinAW1, savePinAW2, savePinAW3, savePinCC1, savePinCC2, savePinCC3, savePinPE, savePinSW1, savePinSW2, savePinFF1, savePinFF2, savePinFF3, savePinBF, savePinLB1, savePinLB2, savePinIB, savePinWD1, savePinWD2, savePinFR1, savePinFR2,
+        trainPinAW, trainPinFR, trainPinLB, trainPinWD, trainPinFF, trainPinPE, trainPinCC, trainPinSW,
+        perchPinCC1, perchPinCC2, perchPinAW, perchPinLB1, perchPinLB2, perchPinSW, perchPinFR1, perchPinFR2, perchPinWD1, perchPinWD2, perchPinPE, perchPinFF1, perchPinFF2, perchPinBF
+    ];
+var pins = L.layerGroup(pinList).addTo(map);
+//#endregion
 
 
 //#region Shops Items (Shown up top on the map)
@@ -215,17 +280,6 @@ var power = CreateMarker(reaperTextPos[0], reaperTextPos[1] + 450, shopRedChipIc
 var tungsten = CreateMarker(reaperTextPos[0], reaperTextPos[1] + 750, shopBlueChipIcon, "Tungsten Steel[500 SP]", true); //Reaper Tungsten Steel
 //#endregion
 
-function shopBounds() {
-    echoBounds = [LatLng(echoTextPos[0] - 150 + ( zoom * zoomMod), echoTextPos[1]), LatLng(echoTextPos[0] + 150 - (zoom * zoomMod), echoTextPos[1] + 900 - (zoom * zoomMod))];
-    echoBox.setBounds(echoBounds);
-
-    sonnetBounds = [LatLng(sonnetTextPos[0] - 450 + (zoom * zoomMod), sonnetTextPos[1]), LatLng(sonnetTextPos[0] + 450 - (zoom * zoomMod), sonnetTextPos[1] + 1200 - (zoom * zoomMod))];
-    sonnetBox.setBounds(sonnetBounds);
-
-    reaperBounds = [LatLng(reaperTextPos[0] - 150 + (zoom * zoomMod), reaperTextPos[1]), LatLng(reaperTextPos[0] + 150 - (zoom * zoomMod), reaperTextPos[1] + 900 - (zoom * zoomMod))];
-    reaperBox.setBounds(reaperBounds);
-}
-
 
 //#region Skills
 var skillIcon = L.Icon.extend({
@@ -253,7 +307,7 @@ var goldcrestWhistleIcon = new skillIcon({ iconUrl: 'images/markers/upgrades/Gol
 
 
 
-var whistle = CreateMarker(-1080, -2730, goldcrestWhistleIcon, "Goldcrest Whistle", true);
+var whistle = CreateMarker(-1080, -2640, goldcrestWhistleIcon, "Goldcrest Whistle", true);
 var wrench = CreateMarker(-850, -4005, wrenchIcon, "Adjustable Wrench", true);
 var ball = CreateMarker(1175, 5250, bodyModifierIcon, "Body Modifier", true);
 var cling = CreateMarker(-1300, -5250, electromagnetismIcon, "Electro-Magnetism", true);
@@ -503,69 +557,6 @@ AddToAllList(bossList);
 //#endregion
 
 
-//#region Pins
-var pinIcon = L.Icon.extend({
-    options: {
-        iconSize: [28, 28],
-        iconAnchor: [14, 14]
-    }
-});
-
-var saveIcon = new pinIcon({ iconUrl: 'images/markers/world/healthPin.png' });
-//var savePin = CreateMarker(0, 0, saveIcon, "Save Station", false); //
-//var perchIcon = new pinIcon({ iconUrl: 'images/markers/world/perchPin.png' });
-
-var savePinAW1 = CreateMarker(-295, -3475, saveIcon, "Save Station", false); //AW - First Save station
-var savePinAW2 = CreateMarker(-955, -5140, saveIcon, "Save Station", false); //AW - Above Electromagnetism
-var savePinAW3 = CreateMarker(-1270, -3280, saveIcon, "Save Station", false); //AW - After Goldcrest Whistle
-
-var savePinCC1 = CreateMarker(-75, 575, saveIcon, "Save Station", false); //CC - Mainframe Vault
-var savePinCC2 = CreateMarker(-1660, 5, saveIcon, "Save Station", false); //CC - Before Car Battery Boss
-var savePinCC3 = CreateMarker(-2400, 205, saveIcon, "Save Station", false); //CC - Near Electric Key / Electron Boss
-
-var savePinPE = CreateMarker(-1240, 3580, saveIcon, "Save Station", false); //PE - Entrance
-
-var savePinSW1 = CreateMarker(-2130, -6210, saveIcon, 1, true, "Save Station", false); //SW - Left Side
-var savePinSW2 = CreateMarker(-2590, -3450, saveIcon, 1, true, "Save Station", false); //SW - Right Side
-
-var savePinFF1 = CreateMarker(420, 3740, saveIcon, "Save Station", false); //FF - Right of Train Room; Level 0
-var savePinFF2 = CreateMarker(645, 2555, saveIcon, "Save Station", false); //FF - Above Train Room; Extractor Chip Room; Level 1
-var savePinFF3 = CreateMarker(1100, 6805, saveIcon, "Save Station", false); //FF - Right of Sawblade Boss; Level 2
-
-var savePinBF = CreateMarker(2511, 5675, saveIcon, "Save Station", false); //BF - Before Red Socket Room
-
-var savePinLB1 = CreateMarker(1230, -2620, saveIcon, "Save Station", false); //LB - Near Kitchen
-var savePinLB2 = CreateMarker(2045, -4595, saveIcon, "Save Station", false); //LB - After Bell Tower (Giant Pit Multi-Room)
-
-var savePinIB = CreateMarker(-2130, -1025, saveIcon, "Save Station", false); //IB - After Sacrifice Room
-
-var savePinWD1 = CreateMarker(-2235, 2645, saveIcon, "Save Station", false); //WD - After Entrance Tall Room
-var savePinWD2 = CreateMarker(-3410, 4155, saveIcon, "Save Station", false); //WD - Before Spider Boss(es)
-
-var savePinFR1 = CreateMarker(-3675, -3835, saveIcon, "Save Station", false); //FR - Under Rusty
-var savePinFR2 = CreateMarker(-4135, -195, saveIcon, "Save Station", false); //FR - Before Archives Final Bosses
-
-
-var trainIcon = new pinIcon({ iconUrl: 'images/markers/world/trainPin.png' });
-
-var trainPinAW = CreateMarker(-825, -2385, trainIcon, "Train Station", false); //Abandoned Wastes
-var trainPinFR = CreateMarker(-3390, -1665, trainIcon, "Train Station", false); //Forgotten Ruins
-var trainPinLB = CreateMarker(1730, -920, trainIcon, "Train Station", false); //Last Bunker
-var trainPinWD = CreateMarker(-2630, 2940, trainIcon,"Train Station", false); //Water Ducts
-var trainPinFF = CreateMarker(445, 2430, trainIcon, "Train Station", false); //Factory Facility
-var trainPinPE = CreateMarker(-1230, 4245, trainIcon, "Train Station", false); //Pinion's Expanse
-var trainPinCC = CreateMarker(-1140, 405, trainIcon, "Train Station", false); //Central Core (Corrupt Addition)
-var trainPinSW = CreateMarker(-2506, -5195, trainIcon, "Train Station", false); //Sunken Wastes (Corrupt Addition)
-
-var pinList =
-    [
-        savePinAW1, savePinAW2, savePinAW3, savePinCC1, savePinCC2, savePinCC3, savePinPE, savePinSW1, savePinSW2, savePinFF1, savePinFF2, savePinFF3, savePinBF, savePinLB1, savePinLB2, savePinIB, savePinWD1, savePinWD2, savePinFR1, savePinFR2,
-        trainPinAW, trainPinFR, trainPinLB, trainPinWD, trainPinFF, trainPinPE, trainPinCC, trainPinSW
-    ];
-var pins = L.layerGroup(pinList).addTo(map);
-//#endregion
-
-
 /*--- SCRAP PART LOCATION ICONS --------------------------------------*/
 
 
@@ -600,4 +591,16 @@ function checkShopDisplay() {
         echoText.addTo(map);
         echoBox.addTo(map);
     }
+}
+
+
+function shopBounds() {
+    echoBounds = [LatLng(echoTextPos[0] - 150 + (zoom * zoomMod), echoTextPos[1]), LatLng(echoTextPos[0] + 150 - (zoom * zoomMod), echoTextPos[1] + 900 - (zoom * zoomMod))];
+    echoBox.setBounds(echoBounds);
+
+    sonnetBounds = [LatLng(sonnetTextPos[0] - 450 + (zoom * zoomMod), sonnetTextPos[1]), LatLng(sonnetTextPos[0] + 450 - (zoom * zoomMod), sonnetTextPos[1] + 1200 - (zoom * zoomMod))];
+    sonnetBox.setBounds(sonnetBounds);
+
+    reaperBounds = [LatLng(reaperTextPos[0] - 150 + (zoom * zoomMod), reaperTextPos[1]), LatLng(reaperTextPos[0] + 150 - (zoom * zoomMod), reaperTextPos[1] + 900 - (zoom * zoomMod))];
+    reaperBox.setBounds(reaperBounds);
 }
