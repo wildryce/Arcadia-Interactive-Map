@@ -199,7 +199,6 @@ var trainPinSW = CreateMarker(-2506, -5195, trainIcon, "Train Station", false); 
 
 var perchIcon = new pinIcon({ iconUrl: 'images/markers/world/perchPin.png' });
 
-//var perchPin = CreateMarker(0, 0, perchIcon, "Perch", false);
 var perchPinAW = CreateMarker(-1080, -2740, perchIcon, "Perch", false);
 var perchPinCC1 = CreateMarker(-75, 710, perchIcon, "Perch", false);
 var perchPinCC2 = CreateMarker(-2400, 100, perchIcon, "Perch", false);

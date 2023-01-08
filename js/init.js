@@ -22,8 +22,6 @@ map.on("mousemove", function (e) {
 });
 
 map.on("zoom", function (e) {
-    zoomLevel = map.getZoom();
-    zoom = zoomLevel * 1.25;
-    console.log(zoomLevel);
+    zoom = map.getZoom() * 1.25;
     shopBounds();
 });
