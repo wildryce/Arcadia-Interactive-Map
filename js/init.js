@@ -6,6 +6,8 @@ L.CRS.MyCRS = L.extend({}, L.CRS.Simple, { transformation: new L.transformation(
 var bounds = [[3840, 0], [imageSize - tileSize, imageSize]];
 
 var map = L.map('map', { crs: L.CRS.MyCRS, zoom: 0, minZoom: 0, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5, maxBounds: bounds }); //Center: 9425, 7750
+var zoomLevel = 0;
+var zoom = 1;
 
 var c = new L.Control.Coordinates();
 c.addTo(map);
@@ -17,4 +19,11 @@ map.setView([imageSize / 1.75, imageSize / 2], 0)
 
 map.on("mousemove", function (e) {
     c.setCoordinates(e);
+});
+
+map.on("zoom", function (e) {
+    zoomLevel = map.getZoom();
+    zoom = zoomLevel * 1.25;
+    console.log(zoomLevel);
+    shopBounds();
 });

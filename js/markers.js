@@ -26,7 +26,21 @@ function LatLng(lat, lng) {
     return [newLat, newLng];
 }
 
+function Lat(lat) {
+    var latMod = 9425;
 
+    var newLat = lat + latMod;
+
+    return newLat;
+}
+
+function Lng(lng) {
+    var lngMod = 7750;
+
+    var newLng = lng + lngMod;
+
+    return newLng
+}
 
 function changeOpacity(e) {
     var marker = e.target;
@@ -82,6 +96,18 @@ function AddToAllList(list) {
 
 window.addEventListener('click', checkShopDisplay);
 
+
+/// SHOP LAYOUTS
+var zoomMod = 30;
+var echoTextPos = [2450, 1000];
+var echoBounds = [LatLng(echoTextPos[0] - 150, echoTextPos[1]), LatLng(echoTextPos[0] + 150, echoTextPos[1] + 900)];
+
+var sonnetTextPos = [300, -5350];
+var sonnetBounds = [LatLng(sonnetTextPos[0] - 450, sonnetTextPos[1]), LatLng(sonnetTextPos[0] + 450, sonnetTextPos[1] + 1200)];
+
+var reaperTextPos = [2100, 1000];
+var reaperBounds = [LatLng(reaperTextPos[0] - 150, reaperTextPos[1]), LatLng(reaperTextPos[0] + 150, reaperTextPos[1] + 900)];
+
 //#region Disruptors
 var disruptorIcon = L.icon({
     iconUrl: 'images/markers/world/Disruptor_Icon.png',
@@ -124,13 +150,15 @@ AddToAllList(disruptorsList);
 //#endregion
 
 
+
+
 //#region Shops Items (Shown up top on the map)
 var shopIcon = L.Icon.extend({
     options: {
         iconSize: [28, 28],
-        iconAnchor: [0, 14],
+        iconAnchor: [14, 14],
         shadowSize: [32, 32],
-        shadowAnchor: [2, 16]
+        shadowAnchor: [16, 16]
     }
 });
 
@@ -140,37 +168,54 @@ var shopRedChipIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/RedChip_I
 var shopBlueSocket = new shopIcon({ iconUrl: 'images/markers/upgrades/BlueSocket_Icon.png', shadowUrl: pink });
 var shopRedSocket = new shopIcon({ iconUrl: 'images/markers/upgrades/RedSocket_Icon.png', shadowUrl: pink });
 var shopKeyIcon = new shopIcon({ iconUrl: 'images/markers/collectibles/RustyKey_Icon.png', shadowUrl: teal });
-//var shopSkullGreenIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/RedChip_Icon.png' });
+var shopSkullGreenIcon = new shopIcon({ iconUrl: 'images/markers/collectibles/GreenSkull_Icon.png', shadowUrl: green });
+var shopSkullRedIcon = new shopIcon({ iconUrl: 'images/markers/collectibles/RedSkull_Icon.png', shadowUrl: green });
 var shopCasuleIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/CapsuleFragment_Icon.png', shadowUrl: blue });
 
 
-var echoText = L.tooltip(LatLng(3100, -4700), { content: 'Echo Shop Items', permanent: true, direction: 'center' }).addTo(map);
+var echoBox = L.rectangle(echoBounds, { color: "#ff7800", weight: 1 }).addTo(map);
+var echoText = L.tooltip(LatLng(echoTextPos[0], echoTextPos[1]), { content: 'Echo Shop Items', permanent: true, direction: 'left' }).addTo(map);
 
-var detonate = CreateMarker(3700, -4200, shopBlueChipIcon, "Self Detonation [400 SP]", true); //Self Detonation
-var projectile = CreateMarker(3400, -4200, shopRedChipIcon, "Shock Projectile [400 SP]", true); //Shock Projectile
-var shock = CreateMarker(3100, -4200, shopRedChipIcon, "Shock Wave [400 SP]", true); //Shock Wave
-
-
-var sonnetText = L.tooltip(LatLng(3100, -2000), { content: 'Sonnet Shop Items', permanent: true, direction: 'center' }).addTo(map);
-
-var shopKey = CreateMarker(3700, -1450, shopKeyIcon, "Rusted Key [ 300 SP]", true); //Sonnet Key
-var shopCapsule1 = CreateMarker(3400, -1450, shopCasuleIcon, "Capsule Fragment [450 SP]", true); //Sonnet Capsule 1
-var shopCapsule2 = CreateMarker(3100, -1450, shopCasuleIcon, "Capsule Fragment [600 SP]", true); //Sonnet Capsule 2
-var shopBlueSocket = CreateMarker(3700, -1150, shopBlueSocket, "Blue Chip Socket [500 SP]", true); //Sonnet Blue Socket
-var protect = CreateMarker(3400, -1150, shopBlueChipIcon, "Protector's Capsule [400 SP]", true); //Sonnet Protector's Capsule
-var smallprotect = CreateMarker(3100, -1150, shopBlueChipIcon, "Pocket Magnet [400 SP]", true); //Sonnet Pocket Magnet
-var shopRedSocket = CreateMarker(3700, -850, shopRedSocket, "Red Chip Socket [500 SP]", true); //Sonnet Red Socket
-var longsword = CreateMarker(3400, -850, shopRedChipIcon, "Sword Extension [400 SP]", true); //Sonnet Sword Extension
-var fastsword = CreateMarker(3100, -850, shopRedChipIcon, "Agile Alloy [400 SP]", true); //Sonnet Agile Alloy
-var undiscovered = CreateMarker(3400, -550, shopgreenChipIcon, "Map Sweeper [400 SP]", true); //Sonnet Map Sweeper
-var magnet = CreateMarker(3100, -550, shopgreenChipIcon, "Ferromagnetic [400 SP]", true); //Sonnet Ferromagnetic
+var detonate = CreateMarker(echoTextPos[0], echoTextPos[1] + 150, shopBlueChipIcon, "Self Detonation [400 SP]", true); //Self Detonation
+var projectile = CreateMarker(echoTextPos[0], echoTextPos[1] + 450, shopRedChipIcon, "Shock Projectile [400 SP]", true); //Shock Projectile
+var shock = CreateMarker(echoTextPos[0], echoTextPos[1] + 750, shopRedChipIcon, "Shock Wave [400 SP]", true); //Shock Wave
 
 
-var reaperText = L.tooltip(LatLng(2200, 500), { content: 'Reaper Shop Items', permanent: true, direction: 'center' }).addTo(map);
+var sonnetBox = L.rectangle(sonnetBounds, { color: "#ff7800", weight: 1 }).addTo(map);
+var sonnetText = L.tooltip(LatLng(sonnetTextPos[0], sonnetTextPos[1]), { content: 'Sonnet Shop Items', permanent: true, direction: 'left' }).addTo(map);
 
-var power = CreateMarker(2500, 1050, shopRedChipIcon, "Power Enhancer [1000 SP]", true); //Reaper Power Enhancer
-var tungsten = CreateMarker(2200, 1050, shopBlueChipIcon, "Tungsten Steel[500 SP]", true); //Reaper Tungsten Steel
+var shopKey = CreateMarker(sonnetTextPos[0] + 300, sonnetTextPos[1] + 150, shopKeyIcon, "Rusted Key [ 300 SP]", true); //Sonnet Key
+var shopCapsule1 = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 150, shopCasuleIcon, "Capsule Fragment [450 SP]", true); //Sonnet Capsule 1
+var shopCapsule2 = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 150, shopCasuleIcon, "Capsule Fragment [600 SP]", true); //Sonnet Capsule 2
+var shopBlueSocket = CreateMarker(sonnetTextPos[0] + 300, sonnetTextPos[1] + 450, shopBlueSocket, "Blue Chip Socket [500 SP]", true); //Sonnet Blue Socket
+var protect = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 450, shopBlueChipIcon, "Protector's Capsule [400 SP]", true); //Sonnet Protector's Capsule
+var smallprotect = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 450, shopBlueChipIcon, "Pocket Magnet [400 SP]", true); //Sonnet Pocket Magnet
+var shopRedSocket = CreateMarker(sonnetTextPos[0] + 300, sonnetTextPos[1] + 750, shopRedSocket, "Red Chip Socket [500 SP]", true); //Sonnet Red Socket
+var longsword = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 750, shopRedChipIcon, "Sword Extension [400 SP]", true); //Sonnet Sword Extension
+var fastsword = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 750, shopRedChipIcon, "Agile Alloy [400 SP]", true); //Sonnet Agile Alloy
+var greenSkull = CreateMarker(sonnetTextPos[0] + 300, sonnetTextPos[1] + 1050, shopSkullGreenIcon, "Human Skull (Green)", true); //Sold by Sonnet
+var undiscovered = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 1050, shopgreenChipIcon, "Map Sweeper [400 SP]", true); //Sonnet Map Sweeper
+var magnet = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 1050, shopgreenChipIcon, "Ferromagnetic [400 SP]", true); //Sonnet Ferromagnetic
+
+
+var reaperBox = L.rectangle(reaperBounds, { color: "#ff7800", weight: 1 }).addTo(map);
+var reaperText = L.tooltip(LatLng(reaperTextPos[0], reaperTextPos[1]), { content: 'Reaper Shop Items', permanent: true, direction: 'left' }).addTo(map);
+
+var redSkull = CreateMarker(reaperTextPos[0], reaperTextPos[1] + 150, shopSkullRedIcon, "Human Skull (Red)", true); //Sold by Reaper
+var power = CreateMarker(reaperTextPos[0], reaperTextPos[1] + 450, shopRedChipIcon, "Power Enhancer [1000 SP]", true); //Reaper Power Enhancer
+var tungsten = CreateMarker(reaperTextPos[0], reaperTextPos[1] + 750, shopBlueChipIcon, "Tungsten Steel[500 SP]", true); //Reaper Tungsten Steel
 //#endregion
+
+function shopBounds() {
+    echoBounds = [LatLng(echoTextPos[0] - 150 + ( zoom * zoomMod), echoTextPos[1]), LatLng(echoTextPos[0] + 150 - (zoom * zoomMod), echoTextPos[1] + 900 - (zoom * zoomMod))];
+    echoBox.setBounds(echoBounds);
+
+    sonnetBounds = [LatLng(sonnetTextPos[0] - 450 + (zoom * zoomMod), sonnetTextPos[1]), LatLng(sonnetTextPos[0] + 450 - (zoom * zoomMod), sonnetTextPos[1] + 1200 - (zoom * zoomMod))];
+    sonnetBox.setBounds(sonnetBounds);
+
+    reaperBounds = [LatLng(reaperTextPos[0] - 150 + (zoom * zoomMod), reaperTextPos[1]), LatLng(reaperTextPos[0] + 150 - (zoom * zoomMod), reaperTextPos[1] + 900 - (zoom * zoomMod))];
+    reaperBox.setBounds(reaperBounds);
+}
 
 
 //#region Skills
@@ -416,13 +461,12 @@ var collectibleIcon = L.Icon.extend({
 });
 
 var cassetteIcon = new collectibleIcon({ iconUrl: 'images/markers/collectibles/Cassette_Icon.png' });
-var cassette = CreateMarker(820, -1170, cassetteIcon, "Melody's Cassette (Puzzle Reward)", true); //Given by Pinion
+var cassette = CreateMarker(820, -1170, cassetteIcon, "Melody's Cassette (Puzzle Reward)", true); // Found in Last Bunker by doing Piano Puzzle
 
 var electricKeyIcon = new collectibleIcon({ iconUrl: 'images/markers/collectibles/ElectricKey_Icon.png' });
-var electricKey = CreateMarker(-2490, -75, electricKeyIcon, "Electric Key", true); //Given by Pinion
+var electricKey = CreateMarker(-2490, -75, electricKeyIcon, "Electric Key", true); // Found Before Electron Fight
 
-
-var miscList = [cassette, electricKey];
+var miscList = [cassette, electricKey, greenSkull, redSkull];
 var misc = L.layerGroup(miscList).addTo(map);
 AddToAllList(miscList);
 //#endregion
@@ -495,17 +539,19 @@ var savePinFR2 = CreateMarker(-4135, -195, saveIcon, "Save Station", false); //F
 
 var trainIcon = new pinIcon({ iconUrl: 'images/markers/world/trainPin.png' });
 
-var trainPinAW = CreateMarker(-825, -2385, trainIcon, "Train Station", false);
-var trainPinFR = CreateMarker(-3390, -1665, trainIcon, "Train Station", false);
-var trainPinLB = CreateMarker(1730, -920, trainIcon, "Train Station", false);
-var trainPinWD = CreateMarker(-2630, 2940, trainIcon,"Train Station", false);
-var trainPinFF = CreateMarker(445, 2430, trainIcon, "Train Station", false);
-var trainPinPE = CreateMarker(-1230, 4245, trainIcon, "Train Station", false);
+var trainPinAW = CreateMarker(-825, -2385, trainIcon, "Train Station", false); //Abandoned Wastes
+var trainPinFR = CreateMarker(-3390, -1665, trainIcon, "Train Station", false); //Forgotten Ruins
+var trainPinLB = CreateMarker(1730, -920, trainIcon, "Train Station", false); //Last Bunker
+var trainPinWD = CreateMarker(-2630, 2940, trainIcon,"Train Station", false); //Water Ducts
+var trainPinFF = CreateMarker(445, 2430, trainIcon, "Train Station", false); //Factory Facility
+var trainPinPE = CreateMarker(-1230, 4245, trainIcon, "Train Station", false); //Pinion's Expanse
+var trainPinCC = CreateMarker(-1140, 405, trainIcon, "Train Station", false); //Central Core (Corrupt Addition)
+var trainPinSW = CreateMarker(-2506, -5195, trainIcon, "Train Station", false); //Sunken Wastes (Corrupt Addition)
 
 var pinList =
     [
         savePinAW1, savePinAW2, savePinAW3, savePinCC1, savePinCC2, savePinCC3, savePinPE, savePinSW1, savePinSW2, savePinFF1, savePinFF2, savePinFF3, savePinBF, savePinLB1, savePinLB2, savePinIB, savePinWD1, savePinWD2, savePinFR1, savePinFR2,
-        trainPinAW, trainPinFR, trainPinLB, trainPinWD, trainPinFF, trainPinPE
+        trainPinAW, trainPinFR, trainPinLB, trainPinWD, trainPinFF, trainPinPE, trainPinCC, trainPinSW
     ];
 var pins = L.layerGroup(pinList).addTo(map);
 //#endregion
@@ -519,24 +565,30 @@ var pins = L.layerGroup(pinList).addTo(map);
 
 function checkShopDisplay() {
     console.log("YEET");
-    if (!map.hasLayer(chipsSockets) && !map.hasLayer(capsules) && !map.hasLayer(keys)) {
+    if (!map.hasLayer(chipsSockets) && !map.hasLayer(capsules) && !map.hasLayer(keys) && !map.hasLayer(misc)) {
         sonnetText.removeFrom(map);
+        sonnetBox.removeFrom(map);
     }
     else {
         sonnetText.addTo(map);
+        sonnetBox.addTo(map);
     }
 
-    if (!map.hasLayer(chipsSockets)) {
+    if (!map.hasLayer(chipsSockets) && !map.hasLayer(misc)) {
         reaperText.removeFrom(map);
+        reaperBox.removeFrom(map);
     }
     else {
         reaperText.addTo(map);
+        reaperBox.addTo(map);
     }
 
     if (!map.hasLayer(chipsSockets)) {
         echoText.removeFrom(map);
+        echoBox.removeFrom(map);
     }
     else {
         echoText.addTo(map);
+        echoBox.addTo(map);
     }
 }

@@ -2,7 +2,7 @@ function LoadMarkerStates() {
     for (let i = 0; i < allIconsList.length; i++) {
         allIconsList[i].setOpacity(localStorage.getItem(i));
     }
-    console.log("I NEVER LEARNED HOW TO READ");
+    //console.log("I NEVER LEARNED HOW TO READ");
 }
 
 function SaveMarkerStates() {
