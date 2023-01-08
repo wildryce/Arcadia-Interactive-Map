@@ -81,7 +81,30 @@ function setState(e) {
     }
 }
 
+function resetState(e) {
+    var group = e.target;
+    if (!map.hasLayer(group)) {
+        map.addLayer(group);
+    }
+}
+
 function onClickInfo() {
     var div = document.getElementById('infoButton');
     div.parentNode.removeChild(div);
+}
+
+function onClickReset() {
+    ResetAll();
+}
+
+function onClickMode() {
+    var div = document.getElementById('modeButton');
+    var text = div.textContent;
+
+    if (text == "Normal Mode") {
+        div.textContent = "Corrupt Mode (Not Implemented)";
+    }
+    else if (text == "Corrupt Mode (Not Implemented)") {
+        div.textContent = "Normal Mode";
+    }
 }

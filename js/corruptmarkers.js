@@ -573,7 +573,7 @@ var pins = L.layerGroup(pinList).addTo(map);
 
 
 function checkShopDisplay() {
-    //console.log("YEET");
+    console.log("YEET");
     if (!map.hasLayer(chipsSockets) && !map.hasLayer(capsules) && !map.hasLayer(keys) && !map.hasLayer(misc)) {
         sonnetText.removeFrom(map);
         sonnetBox.removeFrom(map);
