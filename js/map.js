@@ -28,7 +28,7 @@ L.control.Legend({
         {
             label: "Chips + Sockets",
             type: "image",
-            url: './images/markers/upgrades/BlueChip_Icon.png',
+            url: './images/markers/chips/RedSocket_Icon.png',
             layers: chipsSockets
         },
         {

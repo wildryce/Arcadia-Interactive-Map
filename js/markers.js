@@ -1,15 +1,16 @@
 /// Marker Template:
 ///     L.marker(LatLng(0, 0, var, opacity: 1, riseOnHover: true, title: "" }).addTo(map).on('click', changeOpacity);
 
-var gray = 'images/backgrounds/gray.png';
+var gray = 'images/backgrounds/gray.png'; // Power Cells
 var red = 'images/backgrounds/red.png';
-var yellow = 'images/backgrounds/yellow.png';
-var purple = 'images/backgrounds/purple.png';
-var blue = 'images/backgrounds/blue.png';
-var green = 'images/backgrounds/green.png';
+var yellow = 'images/backgrounds/yellow.png'; //Coolants
+var purple = 'images/backgrounds/purple.png'; //Skills
+var blue = 'images/backgrounds/blue.png'; //Capsules
+var green = 'images/backgrounds/green.png'; //Collectibles
 var brown = 'images/backgrounds/brown.png';
 var pink = 'images/backgrounds/pink.png';
-var teal = 'images/backgrounds/teal.png';
+var teal = 'images/backgrounds/teal.png'; //Keys
+var shadow = 'images/backgrounds/shadow.png';
 
 var allIconsList = [];
 
@@ -235,23 +236,34 @@ var shopIcon = L.Icon.extend({
     }
 });
 
-var shopgreenChipIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/GreenChip_Icon.png', shadowUrl: pink });
-var shopBlueChipIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/BlueChip_Icon.png', shadowUrl: pink });
-var shopRedChipIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/RedChip_Icon.png', shadowUrl: pink });
-var shopBlueSocket = new shopIcon({ iconUrl: 'images/markers/upgrades/BlueSocket_Icon.png', shadowUrl: pink });
-var shopRedSocket = new shopIcon({ iconUrl: 'images/markers/upgrades/RedSocket_Icon.png', shadowUrl: pink });
+var shopBlueSocket = new shopIcon({ iconUrl: 'images/markers/chips/BlueSocket_Icon.png', shadowUrl: pink});
+var shopRedSocket = new shopIcon({ iconUrl: 'images/markers/chips/RedSocket_Icon.png', shadowUrl: pink});
 var shopKeyIcon = new shopIcon({ iconUrl: 'images/markers/collectibles/RustyKey_Icon.png', shadowUrl: teal });
 var shopSkullGreenIcon = new shopIcon({ iconUrl: 'images/markers/collectibles/GreenSkull_Icon.png', shadowUrl: green });
 var shopSkullRedIcon = new shopIcon({ iconUrl: 'images/markers/collectibles/RedSkull_Icon.png', shadowUrl: green });
 var shopCasuleIcon = new shopIcon({ iconUrl: 'images/markers/upgrades/CapsuleFragment_Icon.png', shadowUrl: blue });
 
+var selfDetonationIcon = new shopIcon({ iconUrl: 'images/markers/chips/self_detonation.png' });
+var shockProjectileIcon = new shopIcon({ iconUrl: 'images/markers/chips/shock_projectile.png' });
+var shockWaveIcon = new shopIcon({ iconUrl: 'images/markers/chips/shock_wave.png' });
+
+var swordExtensionIcon = new shopIcon({ iconUrl: 'images/markers/chips/sword_extension.png' });;
+var protectorsCapsuleIcon = new shopIcon({ iconUrl: 'images/markers/chips/protectors_capsule.png' });
+var pocktMagnetIcon = new shopIcon({ iconUrl: 'images/markers/chips/pocket_magnet.png' });
+var agileAlloyIcon = new shopIcon({ iconUrl: 'images/markers/chips/agile_alloy.png' });
+var mapSweeperIcon = new shopIcon({ iconUrl: 'images/markers/chips/map_sweeper.png' });
+var ferromagneticIcon = new shopIcon({ iconUrl: 'images/markers/chips/ferromagnetic.png' });
+
+var powerEnhancerIcon = new shopIcon({ iconUrl: 'images/markers/chips/power_enhancer.png' });
+var tungstenSteelIcon = new shopIcon({ iconUrl: 'images/markers/chips/tungsten_steel.png' });
+
 
 var echoBox = L.rectangle(echoBounds, { color: "#ff7800", weight: 1 }).addTo(map);
 var echoText = L.tooltip(LatLng(echoTextPos[0], echoTextPos[1]), { content: 'Echo Shop Items', permanent: true, direction: 'left' }).addTo(map);
 
-var detonate = CreateMarker(echoTextPos[0], echoTextPos[1] + 150, shopBlueChipIcon, "Self Detonation [400 SP]", true); //Self Detonation
-var projectile = CreateMarker(echoTextPos[0], echoTextPos[1] + 450, shopRedChipIcon, "Shock Projectile [400 SP]", true); //Shock Projectile
-var shock = CreateMarker(echoTextPos[0], echoTextPos[1] + 750, shopRedChipIcon, "Shock Wave [400 SP]", true); //Shock Wave
+var selfDetonation = CreateMarker(echoTextPos[0], echoTextPos[1] + 150, selfDetonationIcon, "Self Detonation [400 SP]", true); //Self Detonation
+var shockProjectile = CreateMarker(echoTextPos[0], echoTextPos[1] + 450, shockProjectileIcon, "Shock Projectile [400 SP]", true); //Shock Projectile
+var shockWave = CreateMarker(echoTextPos[0], echoTextPos[1] + 750, shockWaveIcon, "Shock Wave [400 SP]", true); //Shock Wave
 
 
 var sonnetBox = L.rectangle(sonnetBounds, { color: "#ff7800", weight: 1 }).addTo(map);
@@ -261,22 +273,22 @@ var shopKey = CreateMarker(sonnetTextPos[0] + 300, sonnetTextPos[1] + 150, shopK
 var shopCapsule1 = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 150, shopCasuleIcon, "Capsule Fragment [450 SP]", true); //Sonnet Capsule 1
 var shopCapsule2 = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 150, shopCasuleIcon, "Capsule Fragment [600 SP]", true); //Sonnet Capsule 2
 var shopBlueSocket = CreateMarker(sonnetTextPos[0] + 300, sonnetTextPos[1] + 450, shopBlueSocket, "Blue Chip Socket [500 SP]", true); //Sonnet Blue Socket
-var protect = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 450, shopBlueChipIcon, "Protector's Capsule [400 SP]", true); //Sonnet Protector's Capsule
-var smallprotect = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 450, shopBlueChipIcon, "Pocket Magnet [400 SP]", true); //Sonnet Pocket Magnet
+var protectorsCapsule = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 450, protectorsCapsuleIcon, "Protector's Capsule [400 SP]", true); //Sonnet Protector's Capsule
+var pocketMagnet = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 450, pocktMagnetIcon, "Pocket Magnet [400 SP]", true); //Sonnet Pocket Magnet
 var shopRedSocket = CreateMarker(sonnetTextPos[0] + 300, sonnetTextPos[1] + 750, shopRedSocket, "Red Chip Socket [500 SP]", true); //Sonnet Red Socket
-var longsword = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 750, shopRedChipIcon, "Sword Extension [400 SP]", true); //Sonnet Sword Extension
-var fastsword = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 750, shopRedChipIcon, "Agile Alloy [400 SP]", true); //Sonnet Agile Alloy
+var swordExtension = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 750, swordExtensionIcon, "Sword Extension [400 SP]", true); //Sonnet Sword Extension
+var agileAlloy = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 750, agileAlloyIcon, "Agile Alloy [400 SP]", true); //Sonnet Agile Alloy
 var greenSkull = CreateMarker(sonnetTextPos[0] + 300, sonnetTextPos[1] + 1050, shopSkullGreenIcon, "Human Skull (Green)", true); //Sold by Sonnet
-var undiscovered = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 1050, shopgreenChipIcon, "Map Sweeper [400 SP]", true); //Sonnet Map Sweeper
-var magnet = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 1050, shopgreenChipIcon, "Ferromagnetic [400 SP]", true); //Sonnet Ferromagnetic
+var mapSweeper = CreateMarker(sonnetTextPos[0], sonnetTextPos[1] + 1050, mapSweeperIcon, "Map Sweeper [400 SP]", true); //Sonnet Map Sweeper
+var ferromagnetic = CreateMarker(sonnetTextPos[0] - 300, sonnetTextPos[1] + 1050, ferromagneticIcon, "Ferromagnetic [400 SP]", true); //Sonnet Ferromagnetic
 
 
 var reaperBox = L.rectangle(reaperBounds, { color: "#ff7800", weight: 1 }).addTo(map);
 var reaperText = L.tooltip(LatLng(reaperTextPos[0], reaperTextPos[1]), { content: 'Reaper Shop Items', permanent: true, direction: 'left' }).addTo(map);
 
 var redSkull = CreateMarker(reaperTextPos[0], reaperTextPos[1] + 150, shopSkullRedIcon, "Human Skull (Red)", true); //Sold by Reaper
-var power = CreateMarker(reaperTextPos[0], reaperTextPos[1] + 450, shopRedChipIcon, "Power Enhancer [1000 SP]", true); //Reaper Power Enhancer
-var tungsten = CreateMarker(reaperTextPos[0], reaperTextPos[1] + 750, shopBlueChipIcon, "Tungsten Steel[500 SP]", true); //Reaper Tungsten Steel
+var powerEnhancer = CreateMarker(reaperTextPos[0], reaperTextPos[1] + 450, powerEnhancerIcon, "Power Enhancer [1000 SP]", true); //Reaper Power Enhancer
+var tungstenSteel = CreateMarker(reaperTextPos[0], reaperTextPos[1] + 750, tungstenSteelIcon, "Tungsten Steel[500 SP]", true); //Reaper Tungsten Steel
 //#endregion
 
 
@@ -380,61 +392,70 @@ var chipIcon = L.Icon.extend({
     options: {
         iconSize: [28, 28],
         iconAnchor: [14, 14],
-        shadowUrl: pink,
         shadowSize: [32, 32],
         shadowAnchor: [16, 16],
         popupAnchor: [0, -11]
     }
 });
 
-var blueChipIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/BlueChip_Icon.png' });
-var redChipIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/RedChip_Icon.png' });
-var greenChipIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/GreenChip_Icon.png' });
+var blueSocketIcon = new chipIcon({ iconUrl: 'images/markers/chips/BlueSocket_Icon.png', shadowUrl: pink });
+var redSocketIcon = new chipIcon({ iconUrl: 'images/markers/chips/RedSocket_Icon.png', shadowUrl: pink });
+var greenSocketIcon = new chipIcon({ iconUrl: 'images/markers/chips/GreenSocket_Icon.png', shadowUrl: pink });
 
-var nomad = CreateMarker(690, -3365, blueChipIcon, "Nomad's Plate", true); // Nomad's Plate
-var sawblade = CreateMarker(-2210, 3165, blueChipIcon, "Sawblade", true); //Sawblade
-var transputer = CreateMarker(-2515, -5715, blueChipIcon, "Amplifying Transputer", true); //Amplifying Transputer
-var qrepair = CreateMarker(-155, 3890, blueChipIcon, "Quick Repair (Quest Reward)", true); //Quick Repair
-var fastcool = CreateMarker(-1680, 2840, blueChipIcon, "Coolant Soluble", true); //Coolant Soluble
+var nomadsPlateIcon = new chipIcon({ iconUrl: 'images/markers/chips/nomads_plate.png'});
+var sawbladeIcon = new chipIcon({ iconUrl: 'images/markers/chips/sawblade.png' });
+var amplifyingTransputerIcon = new chipIcon({ iconUrl: 'images/markers/chips/amplifying_transputer.png' });
+var quickRepairIcon = new chipIcon({ iconUrl: 'images/markers/chips/quick_repair.png' });
+var coolantSoluableIcon = new chipIcon({ iconUrl: 'images/markers/chips/coolant_soluable.png' });
 
-var crit = CreateMarker(-205, -2475, redChipIcon, "Infinity Edge", true); // Infinity Edge
-var spark = CreateMarker(-1280, -405, redChipIcon, "Electro-Emitter (Quatern Reward [12 Power Cells])", true); // Electro-Emitter
-var lightning = CreateMarker(-2243, -3810, redChipIcon, "Bulb Relation", true); // Bulb Relation
-var steady = CreateMarker(-3560, 1075, redChipIcon, "Magnetic Footing", true); // Magnetic Footing
-var bombcost = CreateMarker(910, 140, redChipIcon, "Power Processor (Behind Wall: Requires both skulls)", true); // Power Processor
-var powerblink = CreateMarker(-3450, -3230, redChipIcon, "Space Disturbance", true); // Space Disturbance
-var orbs = CreateMarker(-1395, 890, redChipIcon, "Electric Orbs (Boss Reward)", true); // Electric Orbs
+var infinityEdgeIcon = new chipIcon({ iconUrl: 'images/markers/chips/infinity_edge.png' });
+var electroEmitterIcon = new chipIcon({ iconUrl: 'images/markers/chips/electro_emitter.png' });
+var bulbRelationIcon = new chipIcon({ iconUrl: 'images/markers/chips/bulb_relation.png' });
+var magneticFootingIcon = new chipIcon({ iconUrl: 'images/markers/chips/magnetic_footing.png' });
+var powerProcessorIcon = new chipIcon({ iconUrl: 'images/markers/chips/power_processor.png' });
+var spaceDisturbanceIcon = new chipIcon({ iconUrl: 'images/markers/chips/space_disturbance.png' });
+var electricOrbsIcon = new chipIcon({ iconUrl: 'images/markers/chips/electric_orbs.png' });
 
-var speed = CreateMarker(-1692, -3225, greenChipIcon, "Gyro-Accelerator", true); //Gyro-Accelerator
-var noheat = CreateMarker(1980, -2510, greenChipIcon, "Heat Drive", true); //Heat Drive
-var autorepair = CreateMarker(190, 4195, greenChipIcon, "Auto Repair", true); //Auto Repair
-var extract = CreateMarker(620, 3015, greenChipIcon, "Extractor", true); //Extractor
-var autoroll = CreateMarker(-3037, 5945, greenChipIcon, "Auto Modifier", true); //Auto Modifier
+var gyroAcceleratorIcon = new chipIcon({ iconUrl: 'images/markers/chips/gyro_accelerator.png' });
+var heatDriveIcon = new chipIcon({ iconUrl: 'images/markers/chips/heat_drive.png' });
+var autoRepairIcon = new chipIcon({ iconUrl: 'images/markers/chips/auto_repair.png' });
+var extractorIcon = new chipIcon({ iconUrl: 'images/markers/chips/extractor.png' });
+var autoModifierIcon = new chipIcon({ iconUrl: 'images/markers/chips/auto_modifier.png' });
 
-var socketIcon = L.Icon.extend({
-    options: {
-        iconSize: [26, 26],
-        iconAnchor: [13, 13],
-        shadowUrl: yellow,
-        shadowSize: [32, 32],
-        shadowAnchor: [16, 16],
-        popupAnchor: [0, -11]
-    }
-});
+var nomadsPlate = CreateMarker(690, -3365, nomadsPlateIcon, "Nomad's Plate", true); // Nomad's Plate
+var sawblade = CreateMarker(-2210, 3165, sawbladeIcon, "Sawblade", true); //Sawblade
+var amplifyingTransputer = CreateMarker(-2515, -5715, amplifyingTransputerIcon, "Amplifying Transputer", true); //Amplifying Transputer
+var quickRepair = CreateMarker(-155, 3890, quickRepairIcon, "Quick Repair (Quest Reward)", true); //Quick Repair
+var coolantSoluable = CreateMarker(-1680, 2840, coolantSoluableIcon, "Coolant Soluble", true); //Coolant Soluble
 
-var blueSocketIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/BlueSocket_Icon.png' });
-var redSocketIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/RedSocket_Icon.png' });
-var greenSocketIcon = new chipIcon({ iconUrl: 'images/markers/upgrades/GreenSocket_Icon.png' });
+var infinityEdge = CreateMarker(-205, -2475, infinityEdgeIcon, "Infinity Edge", true); // Infinity Edge
+var electroEmitter = CreateMarker(-1280, -405, electroEmitterIcon, "Electro-Emitter (Quatern Reward [12 Power Cells])", true); // Electro-Emitter
+var bulbRelation = CreateMarker(-2243, -3810, bulbRelationIcon, "Bulb Relation", true); // Bulb Relation
+var magneticFooting = CreateMarker(-3560, 1075, magneticFootingIcon, "Magnetic Footing", true); // Magnetic Footing
+var powerProcessor = CreateMarker(910, 140, powerProcessorIcon, "Power Processor (Behind Wall: Requires both skulls)", true); // Power Processor
+var spaceDisturbance = CreateMarker(-3450, -3230, spaceDisturbanceIcon, "Space Disturbance", true); // Space Disturbance
+var electricOrbs = CreateMarker(-1395, 890, electricOrbsIcon, "Electric Orbs (Boss Reward)", true); // Electric Orbs
 
-var bsocket = CreateMarker(-1830, 6428, blueSocketIcon, "Blue Chip Socket", true); //Blue Socket
-var rsocket = CreateMarker(2630, 5965, redSocketIcon, "Red Chip Socket", true); //Red Socket
-var gsocket = CreateMarker(-3945, -1035, greenSocketIcon, "Green Chip Socket", true); //Green Socket
+var gyroAccelerator = CreateMarker(-1692, -3225, gyroAcceleratorIcon, "Gyro-Accelerator", true); //Gyro-Accelerator
+var heatDrive = CreateMarker(1980, -2510, heatDriveIcon, "Heat Drive", true); //Heat Drive
+var autoRepair = CreateMarker(190, 4195, autoRepairIcon, "Auto Repair", true); //Auto Repair
+var extractor = CreateMarker(620, 3015, extractorIcon, "Extractor", true); //Extractor
+var autoModifier = CreateMarker(-3037, 5945, autoModifierIcon, "Auto Modifier", true); //Auto Modifier
 
-var blueChips = [nomad, sawblade, transputer, qrepair, fastcool, bsocket, protect, smallprotect, shopBlueSocket, detonate, tungsten];
-var redChips = [crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket, longsword, fastsword, shopRedSocket, projectile, shock, power, undiscovered];
-var greenChips = [speed, noheat, autorepair, extract, autoroll, gsocket, magnet];
+var blueSocket = CreateMarker(-1830, 6428, blueSocketIcon, "Blue Chip Socket", true); //Blue Socket
+var redSocket = CreateMarker(2630, 5965, redSocketIcon, "Red Chip Socket", true); //Red Socket
+var greenSocket = CreateMarker(-3945, -1035, greenSocketIcon, "Green Chip Socket", true); //Green Socket
 
-var chipSocketList = [nomad, sawblade, transputer, qrepair, fastcool, bsocket, crit, spark, lightning, steady, bombcost, powerblink, orbs, rsocket, speed, noheat, autorepair, extract, autoroll, gsocket, magnet, protect, smallprotect, longsword, fastsword, shopBlueSocket, shopRedSocket, power, tungsten, detonate, projectile, shock, undiscovered];
+var blueChips = [nomadsPlate, sawblade, amplifyingTransputer, quickRepair, coolantSoluable, protectorsCapsule, pocketMagnet, selfDetonation, tungstenSteel, blueSocket, shopBlueSocket];
+var redChips = [infinityEdge, electroEmitter, bulbRelation, magneticFooting, powerProcessor, spaceDisturbance, electricOrbs, swordExtension, agileAlloy, shockProjectile, shockWave, powerEnhancer, redSocket, shopRedSocket];
+var greenChips = [mapSweeper, gyroAccelerator, heatDrive, autoRepair, extractor, autoModifier, ferromagnetic, greenSocket];
+
+var chipSocketList =
+    [
+        nomadsPlate, sawblade, amplifyingTransputer, quickRepair, coolantSoluable, protectorsCapsule, pocketMagnet, selfDetonation, tungstenSteel, blueSocket, shopBlueSocket,
+        infinityEdge, electroEmitter, bulbRelation, magneticFooting, powerProcessor, spaceDisturbance, electricOrbs, swordExtension, agileAlloy, shockProjectile, shockWave, powerEnhancer, redSocket, shopRedSocket,
+        mapSweeper, gyroAccelerator, heatDrive, autoRepair, extractor, autoModifier, ferromagnetic, greenSocket
+    ];
 var chipsSockets = L.layerGroup(chipSocketList).addTo(map);
 AddToAllList(chipSocketList);
 //#endregion
