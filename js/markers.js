@@ -19,7 +19,7 @@ var zoomMod = 30;
 var echoTextPos = [2450, 1000];
 var echoBounds = [LatLng(echoTextPos[0] - 150, echoTextPos[1]), LatLng(echoTextPos[0] + 150, echoTextPos[1] + 900)];
 
-var sonnetTextPos = [300, -5350];
+var sonnetTextPos = [3100, 1000];
 var sonnetBounds = [LatLng(sonnetTextPos[0] - 450, sonnetTextPos[1]), LatLng(sonnetTextPos[0] + 450, sonnetTextPos[1] + 1200)];
 
 var reaperTextPos = [2100, 1000];
@@ -184,6 +184,8 @@ var savePinWD2 = CreateMarker(-3410, 4155, saveIcon, "Save Station", false); //W
 var savePinFR1 = CreateMarker(-3675, -3835, saveIcon, "Save Station", false); //FR - Under Rusty
 var savePinFR2 = CreateMarker(-4135, -195, saveIcon, "Save Station", false); //FR - Before Archives Final Bosses
 
+var savePinOA1 = CreateMarker(1085, -5420, saveIcon, "Save Station", false); //FR - Before Archives Final Bosses
+var savePinOA2 = CreateMarker(530, -5620, saveIcon, "Save Station", false); //FR - Before Archives Final Bosses
 
 var trainIcon = new pinIcon({ iconUrl: 'images/markers/world/trainPin.png' });
 
@@ -218,7 +220,7 @@ var perchPinBF = CreateMarker(2510, 5515, perchIcon, "Perch", false);
 
 var pinList =
     [
-        savePinAW1, savePinAW2, savePinAW3, savePinCC1, savePinCC2, savePinCC3, savePinPE, savePinSW1, savePinSW2, savePinFF1, savePinFF2, savePinFF3, savePinBF, savePinLB1, savePinLB2, savePinIB, savePinWD1, savePinWD2, savePinFR1, savePinFR2,
+        savePinAW1, savePinAW2, savePinAW3, savePinCC1, savePinCC2, savePinCC3, savePinPE, savePinSW1, savePinSW2, savePinFF1, savePinFF2, savePinFF3, savePinBF, savePinLB1, savePinLB2, savePinIB, savePinWD1, savePinWD2, savePinFR1, savePinFR2, savePinOA1, savePinOA2,
         trainPinAW, trainPinFR, trainPinLB, trainPinWD, trainPinFF, trainPinPE, trainPinCC, trainPinSW,
         perchPinCC1, perchPinCC2, perchPinAW, perchPinLB1, perchPinLB2, perchPinSW, perchPinFR1, perchPinFR2, perchPinWD1, perchPinWD2, perchPinPE, perchPinFF1, perchPinFF2, perchPinBF
     ];
